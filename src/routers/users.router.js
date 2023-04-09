@@ -1,6 +1,4 @@
 const userRouter = require("express").Router()
-
-// const { response } = require("express")
 const userController = require("../controllers/users.controller")
 
 userRouter.get("/", userController.getAllUsers)

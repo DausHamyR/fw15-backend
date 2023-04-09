@@ -6,6 +6,7 @@ exports.findAll = async function () {
     `)
     return rows
 }
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "users" WHERE id=$1
