@@ -7,6 +7,13 @@ router.get("/", (request, response) => {
     })
 })
 
-router.use("/users", require("./users.router"))
+router.use("/admin", require("./admin.router"))
+
+router.use("*", (request, response) => {
+    return response.status(404).json({
+        success: false,
+        message: "Resource not found"
+    })
+})
 
 module.exports = router

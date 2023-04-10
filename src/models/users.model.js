@@ -1,9 +1,16 @@
 const db = require("../helpers/db.helper")
 
-exports.findAll = async function () {
-    const {rows} = await db.query(`
-    SELECT * FROM "users"
-    `)
+exports.findAll = async function (page) {
+    page = parseInt(page)
+    const limit = 5
+    const offset = (page - 1) * limit
+
+    const query = `
+SELECT * FROM "users" LIMIT $1 OFFSET $2
+`
+    const values = [limit, offset]
+
+    const {rows} = await db.query(query, values)
     return rows
 }
 
