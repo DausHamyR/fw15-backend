@@ -40,7 +40,7 @@ exports.update = async function (id, data) {
 
 exports.destroy = async function (id) {
     const query = `
-    DELETE FROM "users" WHERE "id"=$1
+    DELETE FROM "users" WHERE "id"=$1 RETURNING *
   `
     const values = [id]
     const {rows} = await db.query(query, values)
