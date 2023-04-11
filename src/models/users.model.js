@@ -1,15 +1,22 @@
 const db = require("../helpers/db.helper")
 
-exports.findAll = async function (page) {
-    page = parseInt(page)
-    const limit = 5
+exports.findAll = async function (page, limit, search, sort, sortBy) {
+    page = parseInt(page) || 1
+    limit = parseInt(limit) || 5
+    search = search || ""
+    sort = sort || "id"
+    sortBy = sortBy || "ASC"
+
     const offset = (page - 1) * limit
 
     const query = `
-SELECT * FROM "users" LIMIT $1 OFFSET $2
+SELECT * FROM "users" 
+WHERE "email" 
+LIKE $3 
+ORDER BY ${sort} ${sortBy} 
+LIMIT $1 OFFSET $2
 `
-    const values = [limit, offset]
-
+    const values = [limit, offset, `%${search}%`]
     const {rows} = await db.query(query, values)
     return rows
 }

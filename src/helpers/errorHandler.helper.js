@@ -15,6 +15,7 @@ const errorHandler = (response, err) => {
             message: "Error: Belum memasukan id",
         })
     }
+    console.log(err.message)
     return response.status(500).json({
         success: false,
         message: "Error: Internal server error",

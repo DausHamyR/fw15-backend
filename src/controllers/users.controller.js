@@ -3,13 +3,22 @@ const errorHandler = require("../helpers/errorHandler.helper")
 // const { request, response } = require("express")
 
 exports.getAllUsers = async(request, response) => {
-    const data = await userModel.findAll()
-    if(data){
-        return response.json({
-            success: true,
-            message: "List of all users",
-            results: data
-        })
+    try {
+        const data = await userModel.findAll(
+            request.query.page, 
+            request.query.limit, 
+            request.query.search,
+            request.query.sort,
+            request.query.sortBy)
+        if(data){
+            return response.json({
+                success: true,
+                message: "List of all users",
+                results: data
+            })
+        }
+    }catch(err) {
+        return errorHandler(response, err)
     }
     return response.status(404).json({
         success: false,
