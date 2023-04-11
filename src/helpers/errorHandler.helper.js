@@ -4,6 +4,18 @@ const errorHandler = (response, err) => {
             success: false,
             message: "Error: email already used!",
         })
+    }
+    if(err?.message?.includes("jwt malformed")) {
+        return response.status(401).json({
+            success: false,
+            message: "Token is invalid!"
+        })
+    }
+    if(err?.message?.includes("invalid signature")) {
+        return response.status(401).json({
+            success: false,
+            message: "Token is invalid!"
+        })
     }else if (err === undefined) {
         return response.status(404).json({
             success: false,
@@ -15,7 +27,19 @@ const errorHandler = (response, err) => {
             message: "Error: Belum memasukan id",
         })
     }
-    console.log(err.message)
+    if(err?.message.includes("wrong_credentials")) {
+        return response.status(400).json({
+            success: false,
+            message: "wrong email or password"
+        })
+    }
+    if(err?.message.includes("unauthorized")) {
+        return response.status(401).json({
+            success: false,
+            message: "unauthorized"
+        })
+    }
+    console.log(err)
     return response.status(500).json({
         success: false,
         message: "Error: Internal server error",
