@@ -1,6 +1,6 @@
 const userModel = require("../models/users.model")
 const errorHandler = require("../helpers/errorHandler.helper")
-// const { request, response } = require("express")
+const argon = require("argon2")
 
 exports.getAllUsers = async(request, response) => {
     try {
@@ -44,7 +44,12 @@ exports.getOneUser = async(request, response) => {
 
 exports.createUser = async (request, response) => {
     try {
-        const data = await userModel.insert(request.body)
+        const hash = await argon.hash(request.body.password)
+        const data = {
+            ...request.body,
+            password: hash
+        }
+        const user = await userModel.insert(data)
         if(request.body.email == "" && request.body.password == "") {
             return response.status(400).json({
                 success: false,
@@ -54,7 +59,7 @@ exports.createUser = async (request, response) => {
         return response.json({
             success: true,
             message: `Create user ${request.body.email} successfully`,
-            result: data
+            result: user
         })
     }catch(err) {
         errorHandler(response, err)

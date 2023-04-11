@@ -14,7 +14,7 @@ const errorHandler = (response, err) => {
     if(err?.message?.includes("invalid signature")) {
         return response.status(401).json({
             success: false,
-            message: "Token is invalid!"
+            message: "Token signature is invalid!"
         })
     }else if (err === undefined) {
         return response.status(404).json({
@@ -28,9 +28,15 @@ const errorHandler = (response, err) => {
         })
     }
     if(err?.message.includes("wrong_credentials")) {
-        return response.status(400).json({
+        return response.status(401).json({
             success: false,
             message: "wrong email or password"
+        })
+    }
+    if(err?.message.includes("password_unmatch")) {
+        return response.status(400).json({
+            success: false,
+            message: "Password and confirm password does not match"
         })
     }
     if(err?.message.includes("unauthorized")) {
