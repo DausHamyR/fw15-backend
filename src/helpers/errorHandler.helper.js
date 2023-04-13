@@ -1,4 +1,10 @@
 const errorHandler = (response, err) => {
+    // if(err?.message === "validation") {
+    //     return response.status(400).json({
+    //         success: false,
+    //         message: "Error: email already used!",
+    //     })
+    // }
     if(err?.message?.includes("duplicate key")) {
         return response.status(409).json({
             success: false,

@@ -41,10 +41,10 @@ exports.findOneByEmail = async function (email) {
 
 exports.insert = async function (data) {
     const query = `
-    INSERT INTO "users" ("email", "password")
-    VALUES ($1, $2) RETURNING *
+    INSERT INTO "users" ("fullName", "email", "password", "picture")
+    VALUES ($1, $2, $3, $4) RETURNING *
     `
-    const values = [data.email, data.password]
+    const values = [data.fullName, data.email, data.password, data.picture]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
@@ -52,11 +52,11 @@ exports.insert = async function (data) {
 exports.update = async function (id, data) {
     const query = `
     UPDATE "users"
-    SET "email"=$2, "password"=$3 
+    SET "email"=$2, "password"=$3, "picture"=$4, "fullName"=$5 
     WHERE "id"=$1
     RETURNING *
   `
-    const values = [id, data.email, data.password]
+    const values = [id, data.email, data.password, data.picture, data.fullName]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

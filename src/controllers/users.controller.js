@@ -1,6 +1,7 @@
 const userModel = require("../models/users.model")
 const errorHandler = require("../helpers/errorHandler.helper")
 const argon = require("argon2")
+const fileRemover = require("../helpers/fileRemover.helper")
 
 exports.getAllUsers = async(request, response) => {
     try {
@@ -49,38 +50,51 @@ exports.createUser = async (request, response) => {
             ...request.body,
             password: hash
         }
-        const user = await userModel.insert(data)
-        if(request.body.email == "" && request.body.password == "") {
-            return response.status(400).json({
-                success: false,
-                message: "Error: Email dan Password belum di isi",
-            })
+        if(request.file) {
+            data.picture = request.file.filename
         }
+        const user = await userModel.insert(data)
+        // if(request.body.email == "" && request.body.password == "") {
+        //     return response.status(400).json({
+        //         success: false,
+        //         message: "Error: Email dan Password belum di isi",
+        //     })
+        // }
         return response.json({
             success: true,
             message: `Create user ${request.body.email} successfully`,
             result: user
         })
     }catch(err) {
+        fileRemover(request.file)
         errorHandler(response, err)
     }
 }
 
 exports.updateUser = async (request, response) => {
     try {
-        if(request.body.email == "" && request.body.password == ""){
-            return  response.status(400).json({
-                success: false,
-                message: "Error: Email dan Password belum di isi",
-            })
+        // if(request.body.email == "" && request.body.password == ""){
+        //     return  response.status(400).json({
+        //         success: false,
+        //         message: "Error: Email dan Password belum di isi",
+        //     })
+        // }
+        const hash = await argon.hash(request.body.password)
+        const data = {
+            ...request.body,
+            password: hash
         }
-        const data = await userModel.update(request.params.id, request.body)
+        if(request.file) {
+            data.picture = request.file.filename
+        }
+        const user = await userModel.update(request.params.id, data)
         return response.json({
             success: true,
             message: "Update user successfully",
-            results: data
+            results: user
         })
     }catch(err) {
+        fileRemover(request.file)
         errorHandler(response, err)
     }
 }
