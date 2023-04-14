@@ -49,3 +49,21 @@ exports.register = async (request, response) => {
         return errorHandler(response, err)
     }
 }
+
+exports.forgotPassword = async (request, response) => {
+    try {
+        const {email} = request.body
+        const user = await userModel.findOneByEmail(email)
+        if(!user) {
+            throw Error("wrong_credentials")
+        }
+        const token = jwt.sign({id: user.id}, APP_SECRET)
+        return response.json({
+            success: true,
+            message: "Forgot Password success!",
+            results: {token}
+        })
+    }catch(err) {
+        return errorHandler(response, err)
+    }
+}

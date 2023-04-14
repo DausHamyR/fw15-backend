@@ -1,7 +1,7 @@
 const userModel = require("../../models/users.model")
 const errorHandler = require("../../helpers/errorHandler.helper")
 const argon = require("argon2")
-const fileRemover = require("../../helpers/fileRemover.helper")
+// const fileRemover = require("../../helpers/fileRemover.helper")
 
 exports.getAllUsers = async(request, response) => {
     try {
@@ -50,9 +50,9 @@ exports.createUser = async (request, response) => {
             ...request.body,
             password: hash
         }
-        if(request.file) {
-            data.picture = request.file.filename
-        }
+        // if(request.file) {
+        //     data.picture = request.file.filename
+        // }
         const user = await userModel.insert(data)
         // if(request.body.email == "" && request.body.password == "") {
         //     return response.status(400).json({
@@ -66,7 +66,7 @@ exports.createUser = async (request, response) => {
             result: user
         })
     }catch(err) {
-        fileRemover(request.file)
+        // fileRemover(request.file)
         errorHandler(response, err)
     }
 }
@@ -84,9 +84,9 @@ exports.updateUser = async (request, response) => {
             ...request.body,
             password: hash
         }
-        if(request.file) {
-            data.picture = request.file.filename
-        }
+        // if(request.file) {
+        //     data.picture = request.file.filename
+        // }
         const user = await userModel.update(request.params.id, data)
         return response.json({
             success: true,
@@ -94,7 +94,7 @@ exports.updateUser = async (request, response) => {
             results: user
         })
     }catch(err) {
-        fileRemover(request.file)
+        // fileRemover(request.file)
         errorHandler(response, err)
     }
 }
