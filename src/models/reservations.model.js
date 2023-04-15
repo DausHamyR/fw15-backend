@@ -11,7 +11,7 @@ exports.findAll = async function (page, limit, search, sort, sortBy) {
 
     const query = `
 SELECT * FROM "reservations" 
-WHERE "eventId" 
+WHERE "eventId"::TEXT
 LIKE $3 
 ORDER BY ${sort} ${sortBy} 
 LIMIT $1 OFFSET $2

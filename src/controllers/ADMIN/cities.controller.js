@@ -22,7 +22,7 @@ exports.getAllcities = async(request, response) => {
     }
     return response.status(404).json({
         success: false,
-        message: "Error: List all citiess not found",
+        message: "Error: List all cities not found",
     })
 }
 
@@ -53,7 +53,7 @@ exports.createcities = async (request, response) => {
         const cities = await citiesModel.insert(data)
         return response.json({
             success: true,
-            message: `Create cities ${request.body.email} successfully`,
+            message: `Create cities ${request.body.name} successfully`,
             result: cities
         })
     }catch(err) {

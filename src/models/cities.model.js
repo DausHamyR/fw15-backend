@@ -32,10 +32,10 @@ exports.findOne = async function (id) {
 
 exports.insert = async function (data) {
     const query = `
-    INSERT INTO "cities" ("name", "picture")
+    INSERT INTO "cities" ("picture", "name")
     VALUES ($1, $2) RETURNING *
     `
-    const values = [data.name, data.picture]
+    const values = [data.picture, data.name]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

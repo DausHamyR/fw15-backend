@@ -81,7 +81,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "0"
+											"value": "12"
 										}
 									]
 								}
@@ -94,27 +94,22 @@
 								"method": "POST",
 								"header": [],
 								"body": {
-									"mode": "formdata",
-									"formdata": [
+									"mode": "urlencoded",
+									"urlencoded": [
 										{
-											"key": "fullName",
-											"value": "city",
+											"key": "username",
+											"value": "fazztrack1",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "mancity_new1@gmail.com",
+											"value": "fazztrack1@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "M@nCity354",
+											"value": "F@zztr4ck",
 											"type": "text"
-										},
-										{
-											"key": "picture",
-											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/city.jpg"
 										}
 									]
 								},
@@ -140,6 +135,11 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
+											"key": "username",
+											"value": "",
+											"type": "text"
+										},
+										{
 											"key": "email",
 											"value": "",
 											"type": "text"
@@ -164,7 +164,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "7"
+											"value": "6"
 										}
 									]
 								}
@@ -205,7 +205,23 @@
 							"name": "GET ALL CATEGORIES",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/categories?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"categories"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -213,7 +229,24 @@
 							"name": "GET DETAIL CATEGORIES",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/categories/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -221,7 +254,27 @@
 							"name": "CREATE CATEGORIES",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Arts",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/categories",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"categories"
+									]
+								}
 							},
 							"response": []
 						},
@@ -229,7 +282,34 @@
 							"name": "UPDATE CATEGORIES",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Arts",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/categories/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -237,7 +317,24 @@
 							"name": "DELETE CATEGORIES",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/categories/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"categories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -250,7 +347,23 @@
 							"name": "GET ALL CITIES",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/cities?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"cities"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -258,7 +371,24 @@
 							"name": "GET DETAIL CITIES",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/cities/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"cities",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -266,7 +396,32 @@
 							"name": "CREATE CITIES",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Jakarta",
+											"type": "text"
+										},
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/cities",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"cities"
+									]
+								}
 							},
 							"response": []
 						},
@@ -274,7 +429,39 @@
 							"name": "UPDATE CITIES",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "city",
+											"type": "text"
+										},
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/cities/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"cities",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -282,7 +469,24 @@
 							"name": "DELETE CITIES",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/cities/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"cities",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -295,7 +499,23 @@
 							"name": "GET ALL EVENT CATEGORIES",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/eventCategories?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"eventCategories"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -303,7 +523,24 @@
 							"name": "GET DETAIL EVENT CATEGORIES",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/eventCategories/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"eventCategories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -311,7 +548,32 @@
 							"name": "CREATE EVENT CATEGORIES",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "categoryId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/eventCategories",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"eventCategories"
+									]
+								}
 							},
 							"response": []
 						},
@@ -319,7 +581,39 @@
 							"name": "UPDATE EVENT CATEGORIES",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "categoryId",
+											"value": "5",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/eventCategories/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"eventCategories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -327,7 +621,24 @@
 							"name": "DELETE EVENT CATEGORIES",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/eventCategories/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"eventCategories",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -340,7 +651,23 @@
 							"name": "GET ALL EVENTS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/events?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"events"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -348,7 +675,24 @@
 							"name": "GET DETAIL EVENTS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/events/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -356,7 +700,47 @@
 							"name": "CREATE EVENTS",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "title",
+											"value": "jakarta",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2023-06-13",
+											"type": "text"
+										},
+										{
+											"key": "cityId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "descriptions",
+											"value": "idul fitri",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/events",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"events"
+									]
+								}
 							},
 							"response": []
 						},
@@ -364,7 +748,54 @@
 							"name": "UPDATE EVENTS",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "title",
+											"value": "sadsda",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2017-08-40",
+											"type": "text"
+										},
+										{
+											"key": "cityId",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "descriptions",
+											"value": "dasdsadasdsadas",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/events/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -372,7 +803,24 @@
 							"name": "DELETE EVENTS",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/events/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -385,7 +833,23 @@
 							"name": "GET ALL PARTNERS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/partners?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"partners"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -393,7 +857,24 @@
 							"name": "GET DETAIL PARTNERS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/partners/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"partners",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -401,7 +882,32 @@
 							"name": "CREATE PARTNERS",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "name",
+											"value": "js",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/partners",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"partners"
+									]
+								}
 							},
 							"response": []
 						},
@@ -409,7 +915,39 @@
 							"name": "UPDATE PARTNERS",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "name",
+											"value": "jakarta",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/partners/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"partners",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -417,7 +955,24 @@
 							"name": "DELETE PARTNERS",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/partners/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"partners",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -430,7 +985,23 @@
 							"name": "GET ALL PAYMENT METHOD",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/paymentMethod?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"paymentMethod"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -438,7 +1009,24 @@
 							"name": "GET DETAIL PAYMENT METHOD",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/paymentMethod/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"paymentMethod",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -446,7 +1034,27 @@
 							"name": "CREATE PAYMENT METHOD",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "mandiri",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/paymentMethod",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"paymentMethod"
+									]
+								}
 							},
 							"response": []
 						},
@@ -454,7 +1062,34 @@
 							"name": "UPDATE PAYMENT METHOD",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/paymentMethod/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"paymentMethod",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -462,7 +1097,24 @@
 							"name": "DELETE PAYMENT METHOD",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/paymentMethod/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"paymentMethod",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -475,7 +1127,23 @@
 							"name": "GET ALL PROFILE",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/profile?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"profile"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -483,7 +1151,24 @@
 							"name": "GET DETAIL PROFILE",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/profile/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -491,7 +1176,62 @@
 							"name": "CREATE PROFILE",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "fullName",
+											"value": "amat amin daus",
+											"type": "text"
+										},
+										{
+											"key": "phoneNumber",
+											"value": "085345843",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "profession",
+											"value": "programmer",
+											"type": "text"
+										},
+										{
+											"key": "nationality",
+											"value": "indonesia",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "2023-09-29",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -499,7 +1239,69 @@
 							"name": "UPDATE PROFILE",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "fullName",
+											"value": "sdadsadas",
+											"type": "text"
+										},
+										{
+											"key": "phoneNumber",
+											"value": "765756",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "profession",
+											"value": "as",
+											"type": "text"
+										},
+										{
+											"key": "nationality",
+											"value": "asdasdas",
+											"type": "text"
+										},
+										{
+											"key": "birthDate",
+											"value": "2014-02-03",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/profile/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "3"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -507,7 +1309,24 @@
 							"name": "DELETE PROFILE",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/profile/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -520,7 +1339,28 @@
 							"name": "GET ALL RESERVATIONS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservations?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservations"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										},
+										{
+											"key": "sort",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -528,7 +1368,24 @@
 							"name": "GET DETAIL RESERVATIONS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservations/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -536,7 +1393,42 @@
 							"name": "CREATE RESERVATIONS",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "statusId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "paymentMethodId",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reservations",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservations"
+									]
+								}
 							},
 							"response": []
 						},
@@ -544,7 +1436,24 @@
 							"name": "UPDATE RESERVATIONS",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservations/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -552,7 +1461,24 @@
 							"name": "DELETE RESERVATIONS",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservations/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -565,7 +1491,23 @@
 							"name": "GET ALL RESERVATIONS SECTIONS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationSections?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationSections"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -573,7 +1515,24 @@
 							"name": "GET DETAIL RESERVATIONS SECTIONS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationSections/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationSections",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -581,7 +1540,32 @@
 							"name": "CREATE RESERVATIONS SECTIONS",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "melon",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "20000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reservationSections",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationSections"
+									]
+								}
 							},
 							"response": []
 						},
@@ -589,7 +1573,39 @@
 							"name": "UPDATE RESERVATIONS SECTIONS",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "melon",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "2000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reservationSections/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationSections",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -597,7 +1613,24 @@
 							"name": "DELETE RESERVATIONS SECTIONS",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationSections/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationSections",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -610,7 +1643,23 @@
 							"name": "GET ALL RESERVATIONS STATUS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationStatus?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationStatus"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -618,7 +1667,24 @@
 							"name": "GET DETAIL RESERVATIONS STATUS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationStatus/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationStatus",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -626,7 +1692,27 @@
 							"name": "CREATE RESERVATIONS STATUS",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "success",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reservationStatus",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationStatus"
+									]
+								}
 							},
 							"response": []
 						},
@@ -634,7 +1720,34 @@
 							"name": "UPDATE RESERVATIONS STATUS",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "failed",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reservationStatus/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationStatus",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -642,7 +1755,24 @@
 							"name": "DELETE RESERVATIONS STATUS",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationStatus/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationStatus",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -655,7 +1785,23 @@
 							"name": "GET ALL RESERVATIONS TICKETS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationTickets?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationTickets"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -663,7 +1809,24 @@
 							"name": "GET DETAIL RESERVATIONS TICKETS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationTickets/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationTickets",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -671,7 +1834,37 @@
 							"name": "CREATE RESERVATIONS TICKETS",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "reservationId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "sectionId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "1000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reservationTickets",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationTickets"
+									]
+								}
 							},
 							"response": []
 						},
@@ -679,7 +1872,44 @@
 							"name": "UPDATE RESERVATIONS TICKETS",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "reservationId",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "sectionId",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reservationTickets/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationTickets",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -687,7 +1917,24 @@
 							"name": "DELETE RESERVATIONS TICKETS",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/reservationTickets/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reservationTickets",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -700,7 +1947,23 @@
 							"name": "GET ALL WISHLISTS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/wishlists?sortBy=ASC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"wishlists"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "ASC"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -708,7 +1971,24 @@
 							"name": "GET DETAIL WISHLISTS",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/wishlists/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"wishlists",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -716,7 +1996,32 @@
 							"name": "CREATE WISHLISTS",
 							"request": {
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/wishlists",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"wishlists"
+									]
+								}
 							},
 							"response": []
 						},
@@ -724,7 +2029,39 @@
 							"name": "UPDATE WISHLISTS",
 							"request": {
 								"method": "PATCH",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/wishlists/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"wishlists",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
 							},
 							"response": []
 						},
@@ -732,7 +2069,24 @@
 							"name": "DELETE WISHLISTS",
 							"request": {
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/wishlists/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"wishlists",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
 							},
 							"response": []
 						}
@@ -785,13 +2139,13 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "fullName",
-									"value": "hamyr",
+									"key": "username",
+									"value": "",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "hamyr@gmail.com",
+									"value": "hamyr2@gmail.com",
 									"type": "text"
 								},
 								{
@@ -814,6 +2168,34 @@
 							"path": [
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FORGOT PASSWORD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/forgotPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"forgotPassword"
 							]
 						}
 					},

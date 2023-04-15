@@ -53,7 +53,7 @@ exports.createprofile = async (request, response) => {
         const profile = await profileModel.insert(data)
         return response.json({
             success: true,
-            message: `Create profile ${request.body.email} successfully`,
+            message: `Create profile ${request.body.fullName} successfully`,
             result: profile
         })
     }catch(err) {

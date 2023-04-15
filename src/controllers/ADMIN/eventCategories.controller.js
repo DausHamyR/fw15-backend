@@ -21,7 +21,7 @@ exports.getAllEventCategories = async(request, response) => {
     }
     return response.status(404).json({
         success: false,
-        message: "Error: List all eventCategoriess not found",
+        message: "Error: List all eventCategories not found",
     })
 }
 
@@ -49,7 +49,7 @@ exports.createEventCategories = async (request, response) => {
         const eventCategories = await eventCategoriesModel.insert(data)
         return response.json({
             success: true,
-            message: `Create eventCategories ${request.body.email} successfully`,
+            message: "Create eventCategories successfully",
             result: eventCategories
         })
     }catch(err) {

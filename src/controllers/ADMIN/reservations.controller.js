@@ -49,7 +49,7 @@ exports.createreservations = async (request, response) => {
         const reservations = await reservationsModel.insert(data)
         return response.json({
             success: true,
-            message: `Create reservations ${request.body.email} successfully`,
+            message: "Create reservations successfully",
             result: reservations
         })
     }catch(err) {

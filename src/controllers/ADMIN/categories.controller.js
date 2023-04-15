@@ -46,11 +46,10 @@ exports.createCategories = async (request, response) => {
         const user = await categoriesModel.insert(request.body)
         return response.json({
             success: true,
-            message: `Create categories ${request.body.email} successfully`,
+            message: `Create categories ${request.body.name} successfully`,
             result: user
         })
     }catch(err) {
-        // fileRemover(request.file)
         errorHandler(response, err)
     }
 }

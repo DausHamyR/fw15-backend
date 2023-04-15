@@ -5,8 +5,8 @@ const validate = require("../../middlewares/validator.middleware")
 
 partnersRouter.get("/", validate("getAllUsers"), partnersController.getAllpartners)
 partnersRouter.get("/:id", validate("idParams"), partnersController.getOnepartners)
-partnersRouter.post("/", validate("createUser"), uploadMiddleware, partnersController.createpartners)
-partnersRouter.patch("/:id", validate("idParams"), validate("createUser"), uploadMiddleware, partnersController.updatepartners)
+partnersRouter.post("/", uploadMiddleware("picture"), validate("createCities"), partnersController.createpartners)
+partnersRouter.patch("/:id", uploadMiddleware("picture"), validate("idParams"), validate("createCities"), partnersController.updatepartners)
 partnersRouter.delete("/:id", validate("idParams"), partnersController.deletepartners)
 
 module.exports = partnersRouter

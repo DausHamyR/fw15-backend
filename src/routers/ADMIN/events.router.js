@@ -5,8 +5,8 @@ const validate = require("../../middlewares/validator.middleware")
 
 eventsRouter.get("/", validate("getAllUsers"), eventsController.getAllevents)
 eventsRouter.get("/:id", validate("idParams"), eventsController.getOneevents)
-eventsRouter.post("/", validate("createUser"), uploadMiddleware, eventsController.createevents)
-eventsRouter.patch("/:id", validate("idParams"), validate("createUser"), uploadMiddleware, eventsController.updateevents)
+eventsRouter.post("/", uploadMiddleware("picture"), validate("createEvent"), eventsController.createevents)
+eventsRouter.patch("/:id", uploadMiddleware("picture"), validate("idParams"), validate("createEvent"), eventsController.updateevents)
 eventsRouter.delete("/:id", validate("idParams"), eventsController.deleteevents)
 
 module.exports = eventsRouter

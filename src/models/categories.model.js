@@ -40,16 +40,6 @@ exports.insert = async function (data) {
     return rows[0]
 }
 
-// exports.insert1 = async function (data) {
-//     const query = `
-//     INSERT INTO "categories" ("username", "email", "password", "picture")
-//     VALUES ($1, $2, $3, $4) RETURNING *
-//     `
-//     const values = [data.username, data.email, data.password, data.picture]
-//     const {rows} = await db.query(query, values)
-//     return rows[0]
-// }
-
 exports.update = async function (id, data) {
     const query = `
     UPDATE "categories"

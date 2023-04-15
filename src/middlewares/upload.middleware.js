@@ -35,9 +35,11 @@ const uploadMiddleware = (field) => {
                         message: "File format invalid"
                     })
                 }
+                console.log(err)
                 return response.status(400).json({
                     success: false,
-                    message: "File too large"
+                    message: "File too large",
+                    
                 })
             }
             return next()
