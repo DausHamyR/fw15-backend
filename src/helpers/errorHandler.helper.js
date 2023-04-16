@@ -1,14 +1,20 @@
 const errorHandler = (response, err) => {
-    // if(err?.message === "validation") {
-    //     return response.status(400).json({
-    //         success: false,
-    //         message: "Error: email already used!",
-    //     })
-    // }
+    if(err?.message === "blank_username") {
+        return response.status(400).json({
+            success: false,
+            message: "username cannot be empty"
+        })
+    }
+    if(err?.message === "blank_password") {
+        return response.status(400).json({
+            success: false,
+            message: "password cannot be empty"
+        })
+    }
     if(err?.message?.includes("duplicate key")) {
         return response.status(409).json({
             success: false,
-            message: "Error: email already used!",
+            message: "Error: email already used!"
         })
     }
     if(err?.message?.includes("jwt malformed")) {

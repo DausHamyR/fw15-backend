@@ -29,7 +29,13 @@ exports.login = async (request, response) => {
 
 exports.register = async (request, response) => {
     try {
-        const {password, confirmPassword} = request.body
+        const {password, confirmPassword, username} = request.body
+        if(username === "") {
+            throw Error("blank_username")
+        }
+        if(password === "") {
+            throw Error("blank_password")
+        }
         if(password !== confirmPassword) {
             throw Error("password_unmatch")
         }
