@@ -8,7 +8,6 @@ const strongPassword =  body("password").isStrongPassword().withMessage("Passwor
 // const idCheck = param("id").toInt().isDecimal().withMessage("ID is invalid").isInt({min: 1}).withMessage("ID tidak boleh kosong")
 // const createCategoriess = body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
 
-
 const rules = {
     authLogin: [
         emailFormat,
@@ -60,8 +59,8 @@ const rules = {
         body("quantity").notEmpty().withMessage("Quantity is required").isNumeric().withMessage("Quantity must be a number")
     ],
     createWishlists: [
-        body("eventId").notEmpty().withMessage("eventId is required").isNumeric().withMessage("eventId must be a number"),
-        body("userId").notEmpty().withMessage("userId is required").isNumeric().withMessage("userId must be a number")
+        body("eventId").optional().notEmpty().withMessage("eventId is required").isNumeric().withMessage("eventId must be a number"),
+        body("userId").optional().notEmpty().withMessage("userId is required").isNumeric().withMessage("userId must be a number")
     ],
     getAllUsers: [
         query("sortBy").isIn(["ASC", "DESC"]).withMessage("Sort type is invalid")
@@ -78,9 +77,6 @@ const validator = (request, response, next) => {
             fileRemover(request.file)
             throw Error("validation")
         }
-        // if (!idCheck) {
-        //     throw Error("id_doesn't_exist")
-        // }
         return next()
     }catch(err) {
         return response.status(400).json({
