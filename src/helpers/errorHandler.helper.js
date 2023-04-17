@@ -5,6 +5,12 @@ const errorHandler = (response, err) => {
             message: "username cannot be empty"
         })
     }
+    if(err?.message === "id_doesn't_exist") {
+        return response.status(400).json({
+            success: false,
+            message: "id is not in database"
+        })
+    }
     if(err?.message === "blank_password") {
         return response.status(400).json({
             success: false,

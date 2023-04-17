@@ -63,6 +63,9 @@ exports.updatewishlists = async (request, response) => {
             ...request.body
         }
         const wishlists = await wishlistsModel.update(request.params.id, data)
+        if(!wishlists){
+            throw Error("id_doesn't_exist")
+        }
         return response.json({
             success: true,
             message: "Update wishlists successfully",

@@ -1,10 +1,13 @@
-const { body, query, param, validationResult } = require("express-validator")
+const { body, query, param, validationResult} = require("express-validator")
 // const errorHandler = require("../helpers/errorHandler.helper")
 const fileRemover = require("../helpers/fileRemover.helper")
 // const uploadMiddleware = require("../../middlewares/upload.middleware")
 
 const emailFormat = body("email").isEmail().withMessage("Email is invalid")
 const strongPassword =  body("password").isStrongPassword().withMessage("Password must be strong!")
+// const idCheck = param("id").toInt().isDecimal().withMessage("ID is invalid").isInt({min: 1}).withMessage("ID tidak boleh kosong")
+// const createCategoriess = body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
+
 
 const rules = {
     authLogin: [
@@ -16,10 +19,10 @@ const rules = {
         emailFormat,
         strongPassword
     ],
-    createCategories: [
+    createCities: [
         body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
     ],
-    createCities: [
+    createCategories: [
         body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
     ],
     createEventCategories: [
@@ -65,7 +68,7 @@ const rules = {
     ],
     idParams: [
         param("id").toInt().isDecimal().withMessage("ID is invalid").isInt({min: 1}).withMessage("ID tidak boleh kosong")
-    ]
+    ],
 }
 
 const validator = (request, response, next) => {
@@ -75,6 +78,9 @@ const validator = (request, response, next) => {
             fileRemover(request.file)
             throw Error("validation")
         }
+        // if (!idCheck) {
+        //     throw Error("id_doesn't_exist")
+        // }
         return next()
     }catch(err) {
         return response.status(400).json({

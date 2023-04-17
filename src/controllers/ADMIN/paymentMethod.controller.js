@@ -63,6 +63,9 @@ exports.updatepaymentMethod = async (request, response) => {
             ...request.body
         }
         const paymentMethod = await paymentMethodModel.update(request.params.id, data)
+        if(!paymentMethod){
+            throw Error("id_doesn't_exist")
+        }
         return response.json({
             success: true,
             message: "Update paymentMethod successfully",

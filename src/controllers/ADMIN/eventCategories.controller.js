@@ -63,6 +63,9 @@ exports.updateEventCategories = async (request, response) => {
             ...request.body
         }
         const eventCategories = await eventCategoriesModel.update(request.params.id, data)
+        if(!eventCategories){
+            throw Error("id_doesn't_exist")
+        }
         return response.json({
             success: true,
             message: "Update eventCategories successfully",

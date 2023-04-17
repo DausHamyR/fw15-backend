@@ -88,6 +88,9 @@ exports.updateUser = async (request, response) => {
         //     data.picture = request.file.filename
         // }
         const user = await userModel.update(request.params.id, data)
+        if(!user){
+            throw Error("id_doesn't_exist")
+        }
         return response.json({
             success: true,
             message: "Update user successfully",

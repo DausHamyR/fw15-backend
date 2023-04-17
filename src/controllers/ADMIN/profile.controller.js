@@ -67,10 +67,13 @@ exports.updateprofile = async (request, response) => {
         const data = {
             ...request.body
         }
+        const profile = await profileModel.update(request.params.id, data)
+        if(!profile){
+            throw Error("id_doesn't_exist")
+        }
         if(request.file) {
             data.picture = request.file.filename
         }
-        const profile = await profileModel.update(request.params.id, data)
         return response.json({
             success: true,
             message: "Update profile successfully",

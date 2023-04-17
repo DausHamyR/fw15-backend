@@ -63,6 +63,9 @@ exports.updatereservationTickets = async (request, response) => {
             ...request.body
         }
         const reservationTickets = await reservationTicketsModel.update(request.params.id, data)
+        if(!reservationTickets){
+            throw Error("id_doesn't_exist")
+        }
         return response.json({
             success: true,
             message: "Update reservationTickets successfully",

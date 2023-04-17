@@ -1,5 +1,6 @@
 const categoriesModel = require("../../models/categories.model")
 const errorHandler = require("../../helpers/errorHandler.helper")
+const validate = require("../../middlewares/validator.middleware")
 
 exports.getAllCategories = async(request, response) => {
     try {
@@ -57,11 +58,16 @@ exports.createCategories = async (request, response) => {
 exports.updateCategories = async (request, response) => {
     try {
         const user = await categoriesModel.update(request.params.id, request.body)
-        return response.json({
-            success: true,
-            message: "Update categories successfully",
-            results: user
-        })
+        if(!user){
+            throw Error("id_doesn't_exist")
+        }
+        if(validate("idParams")){
+            return response.json({
+                success: true,
+                message: "Update categories successfully",
+                results: user
+            })
+        }
     }catch(err) {
         errorHandler(response, err)
     }

@@ -67,10 +67,13 @@ exports.updatepartners = async (request, response) => {
         const data = {
             ...request.body
         }
+        const partners = await partnersModel.update(request.params.id, data)
+        if(!partners){
+            throw Error("id_doesn't_exist")
+        }
         if(request.file) {
             data.picture = request.file.filename
         }
-        const partners = await partnersModel.update(request.params.id, data)
         return response.json({
             success: true,
             message: "Update partners successfully",

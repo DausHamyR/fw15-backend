@@ -28,6 +28,14 @@ exports.findOne = async function (id) {
     const {rows} = await db.query(query, values)
     return rows[0]
 }
+// exports.findOneId = async function (eventId, categoryId) {
+//     const query = `
+//     SELECT * FROM "eventCategories" WHERE eventId=$1, categoryId=$2
+//     `
+//     const values = [eventId, categoryId]
+//     const {rows} = await db.query(query, values)
+//     return rows[0]
+// }
 
 exports.insert = async function (data) {
     const query = `
