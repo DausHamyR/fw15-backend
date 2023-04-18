@@ -43,11 +43,11 @@ exports.insert = async function (data) {
 exports.update = async function (id, data) {
     const query = `
     UPDATE "cities"
-    SET "name"=$2, "picture"=$3
+    SET "picture"=$2, "name"=$3
     WHERE "id"=$1
     RETURNING *
   `
-    const values = [id, data.name, data.picture]
+    const values = [id, data.picture, data.name]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
