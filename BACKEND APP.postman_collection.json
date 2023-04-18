@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2154b7bd-e26e-489d-92d7-215b5b065828",
+		"_postman_id": "7e0c6769-d7d8-407b-9ddd-5f22373aa1cb",
 		"name": "BACKEND APP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25632088"
@@ -81,7 +81,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "12"
+											"value": "100"
 										}
 									]
 								}
@@ -136,18 +136,20 @@
 									"urlencoded": [
 										{
 											"key": "username",
-											"value": "",
+											"value": "fazztrack1",
 											"type": "text"
 										},
 										{
 											"key": "email",
 											"value": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "password",
 											"value": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -164,7 +166,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "6"
+											"value": "22"
 										}
 									]
 								}
@@ -243,7 +245,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "100"
 										}
 									]
 								}
@@ -260,7 +262,7 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "Arts",
+											"value": "E-sport",
 											"type": "text"
 										}
 									]
@@ -306,7 +308,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "200"
 										}
 									]
 								}
@@ -385,7 +387,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": ""
 										}
 									]
 								}
@@ -401,14 +403,14 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "name",
-											"value": "Jakarta",
-											"type": "text"
-										},
-										{
 											"key": "picture",
 											"type": "file",
 											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "name",
+											"value": "jakarta",
+											"type": "text"
 										}
 									]
 								},
@@ -435,13 +437,13 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "city",
+											"value": "bali",
 											"type": "text"
 										},
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+											"src": "/C:/Users/ahmad/Downloads/bali.jpg"
 										}
 									]
 								},
@@ -458,7 +460,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "170"
 										}
 									]
 								}
@@ -483,7 +485,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "28"
 										}
 									]
 								}
@@ -1165,7 +1167,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "3"
+											"value": "2"
 										}
 									]
 								}
@@ -1246,42 +1248,50 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+											"src": "/C:/Users/ahmad/Downloads/bandung.jpg",
+											"disabled": true
 										},
 										{
 											"key": "fullName",
-											"value": "sdadsadas",
-											"type": "text"
+											"value": "amat amin daus",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "phoneNumber",
-											"value": "765756",
-											"type": "text"
+											"value": "083227283562",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "gender",
 											"value": "true",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "profession",
-											"value": "as",
-											"type": "text"
+											"value": "doctor",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "nationality",
-											"value": "asdasdas",
-											"type": "text"
+											"value": "indonesia",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "birthDate",
 											"value": "2014-02-03",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "userId",
-											"value": "4",
-											"type": "text"
+											"value": "5",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -1298,7 +1308,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "3"
+											"value": "7"
 										}
 									]
 								}
@@ -1985,7 +1995,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "3"
 										}
 									]
 								}
@@ -2058,7 +2068,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "4"
+											"value": "3"
 										}
 									]
 								}
@@ -2107,7 +2117,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "hamyr@gmail.comm",
+									"value": "hamyr@gmail.com",
 									"type": "text"
 								},
 								{
@@ -2139,13 +2149,13 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "username",
+									"key": "fullName",
 									"value": "daus",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "hamyr3@gmail.com",
+									"value": "hamyr5@gmail.com",
 									"type": "text"
 								},
 								{
@@ -2183,7 +2193,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "hamyr@gmail.com",
+									"value": "hamyr500@gmail.com",
 									"type": "text"
 								}
 							]
@@ -2196,6 +2206,87 @@
 							"path": [
 								"auth",
 								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RESET PASSWORD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "578410",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hamyr5@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "confirmPassword",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PROFILE",
+			"item": [
+				{
+					"name": "EDIT PROFILE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fullName",
+									"value": "daus",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "/C:/Users/ahmad/Downloads/semarang.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile"
 							]
 						}
 					},
