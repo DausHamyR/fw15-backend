@@ -11,6 +11,12 @@ const errorHandler = (response, err) => {
             message: "id is not in database"
         })
     }
+    if(err?.message?.includes("no_forgot_request")) {
+        return response.status(401).json({
+            success: false,
+            message: "the code entered is incorrect"
+        })
+    }
     if(err?.message === "blank_password") {
         return response.status(400).json({
             success: false,

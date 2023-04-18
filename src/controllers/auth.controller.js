@@ -1,4 +1,6 @@
 const userModel = require("../models/users.model")
+const profileModel = require("../models/profile.model")
+const forgotRequestModel = require("../models/forgotRequest.model")
 const errorHandler = require("../helpers/errorHandler.helper")
 const jwt = require("jsonwebtoken")
 const {APP_SECRET} = process.env
@@ -29,7 +31,7 @@ exports.login = async (request, response) => {
 
 exports.register = async (request, response) => {
     try {
-        const {password, confirmPassword, username} = request.body
+        const {fullName, password, confirmPassword, username} = request.body
         if(username === "") {
             throw Error("blank_username")
         }
@@ -45,6 +47,11 @@ exports.register = async (request, response) => {
             password: hash
         }
         const user = await userModel.insert(data)
+        const profileData = {
+            fullName,
+            userId: user.id
+        }
+        await profileModel.insert(profileData)
         const token = jwt.sign({id: user.id}, APP_SECRET)
         return response.json({
             success: true,
@@ -63,11 +70,50 @@ exports.forgotPassword = async (request, response) => {
         if(!user) {
             throw Error("wrong_credentials")
         }
-        const token = jwt.sign({id: user.id}, APP_SECRET)
+        const randomNumber = Math.random()
+        const rounded = Math.round(randomNumber * 100000)
+        const padded = String(rounded).padEnd(6, "0")
+        const forgot = await forgotRequestModel.insert({
+            email: user.email,
+            code: padded
+        })
+        if(!forgot) {
+            throw Error("forgot_failed")
+        }
         return response.json({
             success: true,
-            message: "Forgot Password success!",
-            results: {token}
+            message: "Request reset password success"
+        })
+        // const token = jwt.sign({id: user.id}, APP_SECRET)
+        // return response.json({
+        //     success: true,
+        //     message: "Forgot Password success!",
+        //     results: {token}
+        // })
+    }catch(err) {
+        return errorHandler(response, err)
+    }
+}
+
+exports.resetPassword = async (request, response) => {
+    try {
+        const {code, email, password} = request.body
+        const find = await forgotRequestModel.findOneByCodeAndEmail(code, email)
+        if(!find) {
+            throw Error("no_forgot_request")
+        }
+        const selectedUser = await userModel.findOneByEmail(email)
+        const data = {
+            password: await argon.hash(password)
+        }
+        const user = await userModel.update(selectedUser.id, data)
+        if(!user) {
+            throw Error("no_forgot_request2")
+        }
+        await forgotRequestModel.destroy(find.id)
+        return response.json({
+            success: true,
+            message: "Reset password success"
         })
     }catch(err) {
         return errorHandler(response, err)

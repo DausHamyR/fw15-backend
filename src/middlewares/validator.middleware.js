@@ -35,13 +35,13 @@ const rules = {
         body("descriptions").isLength({min: 6}).withMessage("Descriptions less than 6 characters").isLength({max: 200}).withMessage("Descriptions maximum 200 characters")
     ],
     createProfile: [
-        body("fullName").isLength({min:3, max:30}).withMessage("fullName length is invalid"),
-        body("phoneNumber").isMobilePhone().withMessage("Invalid phone number"),
-        body("gender").isBoolean({female: true, male: false}).withMessage("wrong gender"),
-        body("profession").isString().withMessage("Profession must be a string"),
-        body("nationality").isAlpha().withMessage("Invalid nationality value"),
-        body("birthDate").isDate().withMessage("Invalid birth date value"),
-        body("userId").isDecimal({decimal_digits: 1}).withMessage("userId is invalid")
+        body("fullName").optional().isLength({min:3, max:30}).withMessage("fullName length is invalid"),
+        body("phoneNumber").optional().isMobilePhone().withMessage("Invalid phone number"),
+        body("gender").optional().isBoolean({female: true, male: false}).withMessage("wrong gender"),
+        body("profession").optional().isString().withMessage("Profession must be a string"),
+        body("nationality").optional().isAlpha().withMessage("Invalid nationality value"),
+        body("birthDate").optional({nullable: true}).isDate().withMessage("Invalid birth date value"),
+        body("userId").optional().isDecimal({decimal_digits: 1}).withMessage("userId is invalid")
     ],
     createReservations: [
         body("eventId").isDecimal({decimal_digits: 1}).withMessage("eventId is invalid"),
@@ -68,6 +68,11 @@ const rules = {
     idParams: [
         param("id").toInt().isDecimal().withMessage("ID is invalid").isInt({min: 1}).withMessage("ID tidak boleh kosong")
     ],
+    resetPassword: [
+        body("confirmPassword").custom((value, {req}) => {
+            return value === req.body.password
+        }).withMessage("confirm password does not match")
+    ]
 }
 
 const validator = (request, response, next) => {
