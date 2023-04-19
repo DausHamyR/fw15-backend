@@ -10,8 +10,10 @@ router.get("/", (request, response) => {
 
 router.use("/auth", require("./auth.router"))
 router.use("/admin", authMiddleware, require("./ADMIN/admin.router"))
-router.use("/profile", authMiddleware, require("./profile.router"))
-router.use("/city", authMiddleware, require("./cities.router"))
+router.use("/profile", authMiddleware, require("./MAIN BUSINESS FLOW/profile.router"))
+router.use("/city", authMiddleware, require("./MAIN BUSINESS FLOW/cities.router"))
+router.use("/categories", authMiddleware, require("./MAIN BUSINESS FLOW/categories.router"))
+router.use("/partners", authMiddleware, require("./MAIN BUSINESS FLOW/partners.router"))
 
 router.use("*", (request, response) => {
     return response.status(404).json({

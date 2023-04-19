@@ -30,6 +30,23 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
+exports.findOneById = async function (id) {
+    const query = `
+    SELECT
+    "u"."id",
+    "p"."picture",
+    "p"."name",
+    "p"."createdAt",
+    "p"."updatedAt"
+    FROM "partners" "p"
+    JOIN "users" "u" ON "u"."id" = "p"."id"
+    WHERE "p"."id"=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.insert = async function (data) {
     const query = `
     INSERT INTO "partners" ("picture", "name")

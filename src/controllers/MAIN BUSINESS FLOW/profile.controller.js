@@ -1,6 +1,6 @@
-const errorHandler = require("../helpers/errorHandler.helper")
-const fileRemover = require("../helpers/fileRemover.helper")
-const profileModel = require("../models/profile.model")
+const errorHandler = require("../../helpers/errorHandler.helper")
+const fileRemover = require("../../helpers/fileRemover.helper")
+const profileModel = require("../../models/profile.model")
 
 exports.updateProfile = async (request, response) => {
     try {

@@ -1,5 +1,5 @@
-const errorHandler = require("../helpers/errorHandler.helper")
-const citiesModel = require("../models/cities.model")
+const errorHandler = require("../../helpers/errorHandler.helper")
+const citiesModel = require("../../models/cities.model")
 
 exports.getCity = async (request, response) => {
     try {

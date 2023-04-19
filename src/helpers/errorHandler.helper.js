@@ -5,10 +5,22 @@ const errorHandler = (response, err) => {
             message: "username cannot be empty"
         })
     }
+    if(err?.message?.includes("partners_not_found")) {
+        return response.status(404).json({
+            success: false,
+            message: "partners not found"
+        })
+    }
     if(err?.message?.includes("id_doesn't_exist")) {
         return response.status(400).json({
             success: false,
             message: "id is not in database"
+        })
+    }
+    if(err?.message?.includes("categories_not_found")) {
+        return response.status(404).json({
+            success: false,
+            message: "categories not found"
         })
     }
     if(err?.message?.includes("no_forgot_request")) {
