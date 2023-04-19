@@ -23,7 +23,7 @@ LIMIT $1 OFFSET $2
 
 exports.findOne = async function (id) {
     const query = `
-    SELECT * FROM "profile" WHERE id=$1
+    SELECT * FROM "profile" WHERE "id"=$1
     `
     const values = [id]
     const {rows} = await db.query(query, values)
@@ -32,7 +32,21 @@ exports.findOne = async function (id) {
 
 exports.findOneByUserId = async function (userId) {
     const query = `
-    SELECT * FROM "profile" WHERE userId=$1
+    SELECT
+    "u"."id",
+    "p"."fullName",
+    "u"."username",
+    "u"."email",
+    "p"."phoneNumber",
+    "p"."gender",
+    "p"."profession",
+    "p"."nationality",
+    "p"."birthDate",
+    "p"."createdAt",
+    "p"."updatedAt"
+    FROM "profile" "p"
+    JOIN "users" "u" ON "u"."id" = "p"."userId"
+    WHERE "p"."userId"=$1
     `
     const values = [userId]
     const {rows} = await db.query(query, values)
@@ -67,6 +81,7 @@ exports.update = async function (id, data) {
     const {rows} = await db.query(query, values)
     return rows[0]
 }
+
 exports.updateByUserId = async function (userId, data) {
     const query = `
     UPDATE "profile"
@@ -77,7 +92,6 @@ exports.updateByUserId = async function (userId, data) {
     "profession"=COALESCE(NULLIF($6, ''), "profession"), 
     "nationality"=COALESCE(NULLIF($7, ''), "nationality"), 
     "birthDate"=COALESCE(NULLIF($8::DATE, 'NOW'), "birthDate")
-    "userId"=COALESCE(NULLIF($9::INTEGER, NULL), "userId")
     WHERE "userId"=$1
     RETURNING *
   `
