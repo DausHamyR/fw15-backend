@@ -50,43 +50,24 @@ exports.createUser = async (request, response) => {
             ...request.body,
             password: hash
         }
-        // if(request.file) {
-        //     data.picture = request.file.filename
-        // }
         const user = await userModel.insert(data)
-        // if(request.body.email == "" && request.body.password == "") {
-        //     return response.status(400).json({
-        //         success: false,
-        //         message: "Error: Email dan Password belum di isi",
-        //     })
-        // }
         return response.json({
             success: true,
             message: `Create user ${request.body.email} successfully`,
             result: user
         })
     }catch(err) {
-        // fileRemover(request.file)
         errorHandler(response, err)
     }
 }
 
 exports.updateUser = async (request, response) => {
     try {
-        // if(request.body.email == "" && request.body.password == ""){
-        //     return  response.status(400).json({
-        //         success: false,
-        //         message: "Error: Email dan Password belum di isi",
-        //     })
-        // }
         const hash = await argon.hash(request.body.password)
         const data = {
             ...request.body,
             password: hash
         }
-        // if(request.file) {
-        //     data.picture = request.file.filename
-        // }
         const user = await userModel.update(request.params.id, data)
         if(!user){
             throw Error("id_doesn't_exist")
@@ -97,7 +78,6 @@ exports.updateUser = async (request, response) => {
             results: user
         })
     }catch(err) {
-        // fileRemover(request.file)
         errorHandler(response, err)
     }
 }

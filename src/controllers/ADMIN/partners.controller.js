@@ -53,7 +53,7 @@ exports.createpartners = async (request, response) => {
         const partners = await partnersModel.insert(data)
         return response.json({
             success: true,
-            message: `Create partners ${request.body.email} successfully`,
+            message: `Create partners ${request.body.name} successfully`,
             result: partners
         })
     }catch(err) {

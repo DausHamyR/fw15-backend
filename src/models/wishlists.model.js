@@ -30,6 +30,25 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
+exports.findOneById = async function (id) {
+    const query = `
+    SELECT
+    "e"."title",
+    "c"."name",
+    "e"."date",
+    "w"."createdAt",
+    "w"."updatedAt"
+    FROM "wishlists" "w"
+    JOIN "events" "e" ON "e"."id" = "w"."eventId"
+    JOIN "users" "u" ON "u"."id" = "w"."userId"
+    JOIN "cities" "c" ON "c"."id" = "w"."userId"
+    WHERE "w".id=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.insert = async function (data) {
     const query = `
     INSERT INTO "wishlists" ("eventId", "userId")

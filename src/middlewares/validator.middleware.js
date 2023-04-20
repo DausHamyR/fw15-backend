@@ -3,26 +3,39 @@ const { body, query, param, validationResult} = require("express-validator")
 const fileRemover = require("../helpers/fileRemover.helper")
 // const uploadMiddleware = require("../../middlewares/upload.middleware")
 
-const emailFormat = body("email").isEmail().withMessage("Email is invalid")
-const strongPassword =  body("password").isStrongPassword().withMessage("Password must be strong!")
+const createUsername = body("username").isLength({min:3, max:20}).withMessage("Username length is invalid")
+const createName = body("name").isLength({min:3, max:100}).withMessage("Username length is invalid")
+const createEmailFormat = body("email").isEmail().withMessage("Email is invalid")
+const createStrongPassword =  body("password").isStrongPassword().withMessage("Password must be strong!")
+const updateBody = body("username").optional().isLength({min:3, max:20}).withMessage("Username length is invalid")
+const updateEmailFormat = body("email").optional().isEmail().withMessage("Email is invalid")
+const updateStrongPassword =  body("password").optional().isStrongPassword().withMessage("Password must be strong!")
 // const idCheck = param("id").toInt().isDecimal().withMessage("ID is invalid").isInt({min: 1}).withMessage("ID tidak boleh kosong")
 // const createCategoriess = body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
 
 const rules = {
     authLogin: [
-        emailFormat,
+        createEmailFormat,
         body("password").isLength({min:1}).withMessage("Password is invalid")
     ],
     createUser: [
-        body("username").isLength({min:3, max:20}).withMessage("Username length is invalid"),
-        emailFormat,
-        strongPassword
+        createUsername,
+        createEmailFormat,
+        createStrongPassword
+    ],
+    updateUser: [
+        updateBody,
+        updateEmailFormat,
+        updateStrongPassword
     ],
     createCities: [
-        body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
+        createUsername
+    ],
+    createPartners: [
+        createName
     ],
     createCategories: [
-        body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
+        createUsername
     ],
     createEventCategories: [
         body("eventId").isNumeric().withMessage("eventId must be a number"),

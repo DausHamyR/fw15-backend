@@ -67,10 +67,10 @@ exports.updatecities = async (request, response) => {
         const data = {
             ...request.body
         }
-        const cities = await citiesModel.update(request.params.id, data)
         if(request.file) {
             data.picture = request.file.filename
         }
+        const cities = await citiesModel.update(request.params.id, data)
         if(!cities){
             throw Error("id_doesn't_exist")
         }
