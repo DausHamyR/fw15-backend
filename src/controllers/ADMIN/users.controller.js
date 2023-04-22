@@ -63,7 +63,7 @@ exports.createUser = async (request, response) => {
 
 exports.updateUser = async (request, response) => {
     try {
-        const hash = await argon.hash(request.body.password)
+        const hash = await argon.hash(String(request.body.password))
         const data = {
             ...request.body,
             password: hash

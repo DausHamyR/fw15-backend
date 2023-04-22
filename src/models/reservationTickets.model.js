@@ -43,7 +43,10 @@ exports.insert = async function (data) {
 exports.update = async function (id, data) {
     const query = `
     UPDATE "reservationTickets"
-    SET "reservationId"=$2, "sectionId"=$3, "quantity"=$4
+    SET 
+      "reservationId"=COALESCE(NULLIF($2::INTEGER, NULL), "reservationId"), 
+      "sectionId"=COALESCE(NULLIF($3::INTEGER, NULL), "sectionId"), 
+      "quantity"=COALESCE(NULLIF($4::INTEGER, NULL), "quantity")
     WHERE "id"=$1
     RETURNING *
   `

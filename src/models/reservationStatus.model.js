@@ -30,6 +30,23 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
+exports.findOneById = async function (id) {
+    const query = `
+    SELECT
+    "status"."name",
+    "section"."name",
+    "tickets"."quantity",
+    "section"."price"
+    FROM "reservationStatus" "status"
+    JOIN "reservationSections" "section" ON "section"."id" = "status"."id"
+    JOIN "reservationTickets" "tickets" ON "tickets"."reservationId" = "status"."id"
+    WHERE "status"."id"=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.insert = async function (data) {
     const query = `
     INSERT INTO "reservationStatus" ("name")
@@ -43,7 +60,7 @@ exports.insert = async function (data) {
 exports.update = async function (id, data) {
     const query = `
     UPDATE "reservationStatus"
-    SET "name"=$2
+    SET "name"=COALESCE(NULLIF($2, ''), "name")
     WHERE "id"=$1
     RETURNING *
   `

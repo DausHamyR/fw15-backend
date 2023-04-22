@@ -11,6 +11,12 @@ const errorHandler = (response, err) => {
             message: "partners not found"
         })
     }
+    if(err?.message?.includes("reservationStatus_not_found")) {
+        return response.status(404).json({
+            success: false,
+            message: "History not found"
+        })
+    }
     if(err?.message?.includes("id_doesn't_exist")) {
         return response.status(400).json({
             success: false,

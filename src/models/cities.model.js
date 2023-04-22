@@ -60,7 +60,9 @@ exports.insert = async function (data) {
 exports.update = async function (id, data) {
     const query = `
     UPDATE "cities"
-    SET "picture"=$2, "name"=$3
+    SET 
+      "picture"=COALESCE(NULLIF($2, NULL), "picture"), 
+      "name"=COALESCE(NULLIF($3, ''), "name")
     WHERE "id"=$1
     RETURNING *
   `
