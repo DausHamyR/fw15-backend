@@ -17,7 +17,6 @@ exports.updateProfile = async (request, response) => {
             data.picture = request.file.filename
         }
         const profile = await profileModel.updateByUserId(id, data)
-        console.log(profile)
         if(!profile) {
             throw Error("update_profile_failed")
         }

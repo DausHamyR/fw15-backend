@@ -23,7 +23,7 @@ LIMIT $1 OFFSET $2
 
 exports.findAllCities = async function (page, limit, search, sort, sortBy) {
     page = parseInt(page) || 1
-    limit = parseInt(limit) || 5
+    limit = parseInt(limit) || 7
     search = search || ""
     sort = sort || "name"
     sortBy = sortBy || "ASC"

@@ -86,7 +86,7 @@ exports.update = async function (id, data) {
 exports.updateByUserId = async function (userId, data) {
     const query = `
     UPDATE "profile"
-    SET "picture"=COALESCE(NULLIF($2, ''), "picture"), 
+    SET "picture"=COALESCE(NULLIF($2, NULL), "picture"), 
     "fullName"=COALESCE(NULLIF($3, ''), "fullName"),
     "phoneNumber"=COALESCE(NULLIF($4, ''), "phoneNumber"), 
     "gender"=COALESCE(NULLIF($5::BOOLEAN, NULL), "gender"), 
