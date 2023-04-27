@@ -8,6 +8,7 @@ CREATE TABLE "users" (
 );
 CREATE TABLE "profile" (
     "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    "userId" INTEGER,
     "picture" VARCHAR(255),
     "fullName" VARCHAR(255),
     "phoneNumber" VARCHAR(255),
@@ -37,6 +38,7 @@ CREATE TABLE "events" (
     "title" VARCHAR(255),
     "date" DATE,
     "cityId" INTEGER,
+    "createdBy" INTEGER,
     "descriptions" TEXT,
     "createdAt" TIMESTAMP DEFAULT NOW(),
     "updatedAt" TIMESTAMP DEFAULT NULL
@@ -98,3 +100,20 @@ CREATE TABLE "wishlists" (
     "createdAt" TIMESTAMP DEFAULT NOW(),
     "updatedAt" TIMESTAMP DEFAULT NULL
 );
+CREATE TABLE "forgotRequest" (
+    "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    "email" VARCHAR(255),
+    "code" VARCHAR(255),
+    "createdAt" TIMESTAMP DEFAULT NOW(),
+    "updatedAt" TIMESTAMP DEFAULT NULL
+);
+INSERT INTO "categories" ("name") VALUES ('Music'), ('Festival'), ('Show'), ('Competitions');
+INSERT INTO "cities" ("name") VALUES ('Bandung'), ('Jakarta'), ('Medan'), ('Lampung'), ('Bali');
+INSERT INTO "events" ("title", "descriptions", "date", "cityId") VALUES
+('Konser Dewa 19', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-04-19', 1),
+('Jakarta Fair', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-04-29', 2),
+('Festival Danau Toba', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-05-01', 3),
+('Lampung Krakatau Festival', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-05-05', 4),
+('Dream Machine Bali', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-06-08', 5);
+INSERT INTO "eventCategories" ("eventId", "categoryId") VALUES
+(1,1), (2,2), (3,2), (4,2), (5,1), (1, 2);

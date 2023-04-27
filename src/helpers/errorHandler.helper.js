@@ -5,6 +5,12 @@ const errorHandler = (response, err) => {
             message: "username cannot be empty"
         })
     }
+    if(err?.message?.includes("wishlists_not_found")) {
+        return response.status(404).json({
+            success: false,
+            message: "Wishlists not found"
+        })
+    }
     if(err?.message?.includes("partners_not_found")) {
         return response.status(404).json({
             success: false,

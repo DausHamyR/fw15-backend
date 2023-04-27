@@ -21,6 +21,28 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
+exports.findAllCities = async function (page, limit, search, sort, sortBy) {
+    page = parseInt(page) || 1
+    limit = parseInt(limit) || 5
+    search = search || ""
+    sort = sort || "name"
+    sortBy = sortBy || "ASC"
+
+    const offset = (page - 1) * limit
+
+    const query = `
+    SELECT *
+    FROM "cities" "c"
+    WHERE "c"."id"::TEXT
+    LIKE $3 
+    ORDER BY ${sort} ${sortBy} 
+    LIMIT $1 OFFSET $2
+    `
+    const values = [limit, offset, `%${search}%`]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "cities" WHERE id=$1
@@ -30,22 +52,6 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
-exports.findOneById = async function (id) {
-    const query = `
-    SELECT
-    "u"."id",
-    "c"."picture",
-    "c"."name",
-    "c"."createdAt",
-    "c"."updatedAt"
-    FROM "cities" "c"
-    JOIN "users" "u" ON "u"."id" = "c"."id"
-    WHERE "c"."id"=$1
-    `
-    const values = [id]
-    const {rows} = await db.query(query, values)
-    return rows[0]
-}
 
 exports.insert = async function (data) {
     const query = `

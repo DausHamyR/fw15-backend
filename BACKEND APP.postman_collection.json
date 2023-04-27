@@ -39,7 +39,7 @@
 										},
 										{
 											"key": "search",
-											"value": "",
+											"value": "hamyr5@gmail.com",
 											"disabled": true
 										},
 										{
@@ -48,7 +48,7 @@
 										},
 										{
 											"key": "sort",
-											"value": "id",
+											"value": "email",
 											"disabled": true
 										}
 									]
@@ -98,17 +98,17 @@
 									"urlencoded": [
 										{
 											"key": "username",
-											"value": "fazztrack1",
+											"value": "daus354",
 											"type": "text"
 										},
 										{
 											"key": "email",
-											"value": "fazztrack1@gmail.com",
+											"value": "daus@gmail.com",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "F@zztr4ck",
+											"value": "D@us354313",
 											"type": "text"
 										}
 									]
@@ -136,8 +136,9 @@
 									"urlencoded": [
 										{
 											"key": "username",
-											"value": "fazztrack1",
-											"type": "text"
+											"value": "daus354",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "email",
@@ -147,7 +148,7 @@
 										},
 										{
 											"key": "password",
-											"value": "",
+											"value": "D@us354313",
 											"type": "text",
 											"disabled": true
 										}
@@ -166,7 +167,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "22"
+											"value": "1"
 										}
 									]
 								}
@@ -209,7 +210,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/admin/categories?sortBy=ASC",
+									"raw": "{{url}}/admin/categories?sortBy=DESC",
 									"host": [
 										"{{url}}"
 									],
@@ -220,7 +221,7 @@
 									"query": [
 										{
 											"key": "sortBy",
-											"value": "ASC"
+											"value": "DESC"
 										}
 									]
 								}
@@ -262,7 +263,7 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "E-sport",
+											"value": "Sport",
 											"type": "text"
 										}
 									]
@@ -308,7 +309,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "200"
+											"value": "1"
 										}
 									]
 								}
@@ -351,7 +352,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/admin/cities?sortBy=ASC",
+									"raw": "{{url}}/admin/cities?sortBy=DESC",
 									"host": [
 										"{{url}}"
 									],
@@ -362,7 +363,12 @@
 									"query": [
 										{
 											"key": "sortBy",
-											"value": "ASC"
+											"value": "DESC"
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
 										}
 									]
 								}
@@ -437,13 +443,15 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "bali",
-											"type": "text"
+											"value": "solo",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/bali.jpg"
+											"src": "/C:/Users/ahmad/Downloads/solo.jpg",
+											"disabled": true
 										}
 									]
 								},
@@ -460,7 +468,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "170"
+											"value": "5"
 										}
 									]
 								}
@@ -589,13 +597,15 @@
 									"urlencoded": [
 										{
 											"key": "eventId",
-											"value": "5",
-											"type": "text"
+											"value": "1",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "categoryId",
-											"value": "5",
-											"type": "text"
+											"value": "1",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -655,7 +665,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/admin/events?sortBy=ASC",
+									"raw": "{{url}}/admin/events?sortBy=DESC",
 									"host": [
 										"{{url}}"
 									],
@@ -666,7 +676,7 @@
 									"query": [
 										{
 											"key": "sortBy",
-											"value": "ASC"
+											"value": "DESC"
 										}
 									]
 								}
@@ -709,26 +719,26 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+											"src": "/C:/Users/ahmad/Downloads/idul fitri.jpg"
 										},
 										{
 											"key": "title",
-											"value": "jakarta",
+											"value": "idul fitri 2",
 											"type": "text"
 										},
 										{
 											"key": "date",
-											"value": "2023-06-13",
+											"value": "2023-04-22",
 											"type": "text"
 										},
 										{
 											"key": "cityId",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "descriptions",
-											"value": "idul fitri",
+											"value": "Selamat Idul Fitri, Mohon Maaf Lahir dan Batin",
 											"type": "text"
 										}
 									]
@@ -757,27 +767,32 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+											"src": [],
+											"disabled": true
 										},
 										{
 											"key": "title",
 											"value": "sadsda",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "date",
 											"value": "2017-08-40",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "cityId",
 											"value": "100",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "descriptions",
 											"value": "dasdsadasdsadas",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -891,12 +906,14 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+											"src": "/C:/Users/ahmad/Downloads/event organizing 2.jpg",
+											"disabled": true
 										},
 										{
 											"key": "name",
-											"value": "js",
-											"type": "text"
+											"value": "SAFIRA event organizing",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -924,12 +941,13 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+											"src": "/C:/Users/ahmad/Downloads/event organizing 1.jpg"
 										},
 										{
 											"key": "name",
-											"value": "jakarta",
-											"type": "text"
+											"value": "FAB event organizing",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -946,7 +964,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "1"
 										}
 									]
 								}
@@ -1248,7 +1266,7 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/bandung.jpg",
+											"src": "/C:/Users/ahmad/Downloads/avatar.jpg",
 											"disabled": true
 										},
 										{
@@ -1265,13 +1283,13 @@
 										},
 										{
 											"key": "gender",
-											"value": "true",
+											"value": "false",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "profession",
-											"value": "doctor",
+											"value": "Web Developer",
 											"type": "text",
 											"disabled": true
 										},
@@ -1308,7 +1326,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "7"
+											"value": "1"
 										}
 									]
 								}
@@ -1409,22 +1427,22 @@
 									"urlencoded": [
 										{
 											"key": "eventId",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "userId",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "statusId",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "paymentMethodId",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										}
 									]
@@ -1447,6 +1465,31 @@
 							"request": {
 								"method": "PATCH",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "userId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "statusId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "paymentMethodId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{url}}/admin/reservations/:id",
 									"host": [
@@ -1460,7 +1503,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": null
+											"value": "1"
 										}
 									]
 								}
@@ -1556,12 +1599,12 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "melon",
+											"value": "Arcana",
 											"type": "text"
 										},
 										{
 											"key": "price",
-											"value": "20000",
+											"value": "80000",
 											"type": "text"
 										}
 									]
@@ -1589,12 +1632,13 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "melon",
-											"type": "text"
+											"value": "Dota Plus",
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "price",
-											"value": "2000",
+											"value": "55000",
 											"type": "text"
 										}
 									]
@@ -1736,7 +1780,7 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "failed",
+											"value": "not yet paid",
 											"type": "text"
 										}
 									]
@@ -1889,16 +1933,18 @@
 										{
 											"key": "reservationId",
 											"value": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "sectionId",
 											"value": "",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "quantity",
-											"value": "",
+											"value": "2000",
 											"type": "text"
 										}
 									]
@@ -2012,12 +2058,12 @@
 									"urlencoded": [
 										{
 											"key": "eventId",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "userId",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										}
 									]
@@ -2117,7 +2163,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "hamyr@gmail.com",
+									"value": "daus@gmail.com",
 									"type": "text"
 								},
 								{
@@ -2155,7 +2201,7 @@
 								},
 								{
 									"key": "email",
-									"value": "hamyr5@gmail.com",
+									"value": "daus@gmail.com",
 									"type": "text"
 								},
 								{
@@ -2193,7 +2239,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "hamyr500@gmail.com",
+									"value": "daus@gmail.com",
 									"type": "text"
 								}
 							]
@@ -2221,22 +2267,22 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "578410",
+									"value": "780360",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "hamyr5@gmail.com",
+									"value": "daus@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "12345678",
+									"value": "1234",
 									"type": "text"
 								},
 								{
 									"key": "confirmPassword",
-									"value": "12345678",
+									"value": "1234",
 									"type": "text"
 								}
 							]
@@ -2257,40 +2303,467 @@
 			]
 		},
 		{
-			"name": "PROFILE",
+			"name": "MAIN BUSINESS FLOW",
 			"item": [
 				{
-					"name": "EDIT PROFILE",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "fullName",
-									"value": "daus",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "picture",
-									"type": "file",
-									"src": "/C:/Users/ahmad/Downloads/semarang.jpg"
+					"name": "PROFILE",
+					"item": [
+						{
+							"name": "GET PROFILE",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"profile"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/profile",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"profile"
-							]
+						{
+							"name": "EDIT PROFILE",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/bandung.jpg",
+											"disabled": true
+										},
+										{
+											"key": "fullName",
+											"value": "amat amin daus",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "username",
+											"value": "dausahmad1998",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "daus@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "phoneNumber",
+											"value": "085638225",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "gender",
+											"value": "false",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "profession",
+											"value": "programer web",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "nationality",
+											"value": "indonesia",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "birthDate",
+											"value": "17-08-2023",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/profile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "CITY",
+					"item": [
+						{
+							"name": "GET CITY",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/city",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"city"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CATEGORIES",
+					"item": [
+						{
+							"name": "GET CATEGORIES",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/categories?sortBy=DESC&sort=id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"categories"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "DESC"
+										},
+										{
+											"key": "sort",
+											"value": "id"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PARTNERS",
+					"item": [
+						{
+							"name": "GET PARTNERS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/partners",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"partners"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "EVENTS",
+					"item": [
+						{
+							"name": "GET ALL EVENTS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/events?sortBy=DESC",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"events"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "Sport",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "category",
+											"disabled": true
+										},
+										{
+											"key": "sortBy",
+											"value": "DESC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET DETAIL EVENTS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/events/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"events",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE EVENTS",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "happy new year",
+											"type": "text"
+										},
+										{
+											"key": "location",
+											"value": "jakarta",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "100000",
+											"type": "text"
+										},
+										{
+											"key": "descriptions",
+											"value": "happy new year 2024",
+											"type": "text"
+										},
+										{
+											"key": "category",
+											"value": "healing",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2023-12-31",
+											"type": "text"
+										},
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/events",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UPDATE EVENTS",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "happy new year",
+											"type": "text"
+										},
+										{
+											"key": "descriptions",
+											"value": "merayakan happy new year",
+											"type": "text"
+										},
+										{
+											"key": "date",
+											"value": "2023-12-31",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "picture",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/events",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "HISTORY",
+					"item": [
+						{
+							"name": "GET HISTORY",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/history",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"history"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "WISHLISTS",
+					"item": [
+						{
+							"name": "GET WISHLISTS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/wishlists",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"wishlists"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CREATE WISHLISTS",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/wishlists",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"wishlists"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CHANGE PASSWORD",
+					"item": [
+						{
+							"name": "UPDATE CHANGE PASSWORD",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "oldPassword",
+											"value": "1234",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "12345",
+											"type": "text"
+										},
+										{
+											"key": "confirmNewPassword",
+											"value": "12345",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/changePassword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"changePassword"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},

@@ -3,7 +3,8 @@ const wishlistsController = require("../../controllers/MAIN BUSINESS FLOW/wishli
 // const uploadMiddleware = require("../../middlewares/upload.middleware")
 // const validate = require("../../middlewares/validator.middleware")
 
+// wishlistsRouter.get("/", wishlistsController.getAllWishlists)
 wishlistsRouter.get("/", wishlistsController.getWishlists)
-// wishlistsRouter.patch("/", uploadMiddleware("picture"), wishlistsController.updatewishlists)
+wishlistsRouter.post("/", wishlistsController.createInsertWishlists)
 
 module.exports = wishlistsRouter

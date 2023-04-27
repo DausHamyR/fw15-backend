@@ -34,6 +34,7 @@ exports.findOneByUserId = async function (userId) {
     const query = `
     SELECT
     "u"."id",
+    "p"."picture",
     "p"."fullName",
     "u"."username",
     "u"."email",
@@ -66,7 +67,7 @@ exports.insert = async function (data) {
 exports.update = async function (id, data) {
     const query = `
     UPDATE "profile"
-    SET "picture"=COALESCE(NULLIF($2, ''), "picture"), 
+    SET "picture"=COALESCE(NULLIF($2, NULL), "picture"), 
     "fullName"=COALESCE(NULLIF($3, ''), "fullName"),
     "phoneNumber"=COALESCE(NULLIF($4, ''), "phoneNumber"), 
     "gender"=COALESCE(NULLIF($5::BOOLEAN, NULL), "gender"), 
@@ -99,6 +100,7 @@ exports.updateByUserId = async function (userId, data) {
     const {rows} = await db.query(query, values)
     return rows[0]
 }
+
 
 exports.destroy = async function (id) {
     const query = `

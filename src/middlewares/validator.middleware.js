@@ -8,9 +8,15 @@ const createName = body("name").isLength({min:3, max:100}).withMessage("Name len
 const createEmailFormat = body("email").isEmail().withMessage("Email is invalid")
 const createStrongPassword =  body("password").isStrongPassword().withMessage("Password must be strong!")
 const updateName = body("name").optional().isLength({min:3, max:100}).withMessage("Name length is invalid")
+const updateFullName = body("fullName").optional().isLength({min:3, max:100}).withMessage("Name length is invalid")
 const updateBody = body("username").optional().isLength({min:3, max:20}).withMessage("Username length is invalid")
 const updateEmailFormat = body("email").optional().isEmail().withMessage("Email is invalid")
 const updateStrongPassword =  body("password").optional().isStrongPassword().withMessage("Password must be strong!")
+const updatePhoneNumber =  body("phoneNumber").optional().isMobilePhone().withMessage("Invalid phone number")
+const updateDate =  body("date").optional().isDate().withMessage("invalid date format")
+const updateGender =  body("gender").optional().isBoolean({female: true, male: false}).withMessage("wrong gender")
+const updateProfession =  body("profession").optional().isString().withMessage("Profession must be a string")
+const updateNationality =  body("nationality").optional().isAlpha().withMessage("Invalid nationality value")
 // const idCheck = param("id").toInt().isDecimal().withMessage("ID is invalid").isInt({min: 1}).withMessage("ID tidak boleh kosong")
 // const createCategoriess = body("name").isLength({min:3, max:20}).withMessage("name length is invalid")
 
@@ -30,10 +36,10 @@ const rules = {
         updateStrongPassword
     ],
     createCities: [
-        createUsername
+        createName
     ],
     updateCities: [
-        updateBody
+        updateName
     ],
     createPartners: [
         createName
@@ -123,6 +129,16 @@ const rules = {
         body("confirmPassword").custom((value, {req}) => {
             return value === req.body.password
         }).withMessage("confirm password does not match")
+    ],
+    updateProfile: [
+        updateFullName,
+        updateBody,
+        updateEmailFormat,
+        updatePhoneNumber,
+        updateGender,
+        updateProfession,
+        updateNationality,
+        updateDate
     ]
 }
 

@@ -1,4 +1,5 @@
 const db = require("../helpers/db.helper")
+const argon = require("argon2")
 
 exports.findAll = async function (page, limit, search, sort, sortBy) {
     page = parseInt(page) || 1
@@ -24,6 +25,15 @@ LIMIT $1 OFFSET $2
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "users" WHERE id=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.findOneByPassword = async function (id) {
+    const query = `
+    SELECT password FROM "users" WHERE id=$1
     `
     const values = [id]
     const {rows} = await db.query(query, values)
@@ -69,6 +79,19 @@ exports.update = async function (id, data) {
     RETURNING *
     `
     const values = [id, data.email, data.password, data.username]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.updateChangePassword = async function (id, data) {
+    const query = `
+    UPDATE "users"
+    SET "password"= $2
+    WHERE "id"= $1
+    RETURNING *
+    `
+    const hashPassword = await argon.hash(data.newPassword)
+    const values = [id, hashPassword]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

@@ -21,6 +21,36 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
+exports.findAllCategories = async function (page, limit, search, sort, sortBy) {
+    page = parseInt(page) || 1
+    limit = parseInt(limit) || 5
+    search = search || ""
+    sort = sort || "name"
+    sortBy = sortBy || "ASC"
+
+    const offset = (page - 1) * limit
+
+    const query = `
+SELECT
+"c"."name",
+"e"."picture",
+"e"."title",
+"e"."date",
+"c"."createdAt",
+"c"."updatedAt"
+FROM "eventCategories" "ec"
+JOIN "categories" "c" ON "c"."id" = "ec"."categoryId"
+JOIN "events" "e" ON "e"."id" = "ec"."eventId"
+WHERE "c"."name"
+LIKE $3 
+ORDER BY ${sort} ${sortBy} 
+LIMIT $1 OFFSET $2
+`
+    const values = [limit, offset, `%${search}%`]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "categories" WHERE id=$1

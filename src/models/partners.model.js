@@ -30,21 +30,26 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
-exports.findOneById = async function (id) {
+exports.findAllPartners = async function (page, limit, search, sort, sortBy) {
+    page = parseInt(page) || 1
+    limit = parseInt(limit) || 5
+    search = search || ""
+    sort = sort || "name"
+    sortBy = sortBy || "ASC"
+
+    const offset = (page - 1) * limit
+
     const query = `
-    SELECT
-    "u"."id",
-    "p"."picture",
-    "p"."name",
-    "p"."createdAt",
-    "p"."updatedAt"
+    SELECT *
     FROM "partners" "p"
-    JOIN "users" "u" ON "u"."id" = "p"."id"
-    WHERE "p"."id"=$1
+    WHERE "p"."id"::TEXT
+    LIKE $3 
+    ORDER BY ${sort} ${sortBy} 
+    LIMIT $1 OFFSET $2
     `
-    const values = [id]
+    const values = [limit, offset, `%${search}%`]
     const {rows} = await db.query(query, values)
-    return rows[0]
+    return rows
 }
 
 exports.insert = async function (data) {

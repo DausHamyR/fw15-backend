@@ -4,7 +4,7 @@ const citiesModel = require("../../models/cities.model")
 exports.getCity = async (request, response) => {
     try {
         const {id} = request.user
-        const city = await citiesModel.findOneById(id)
+        const city = await citiesModel.findAllCities(id)
         if(!city) {
             throw Error("city_not_found")
         }

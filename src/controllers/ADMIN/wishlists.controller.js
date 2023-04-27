@@ -49,7 +49,7 @@ exports.createwishlists = async (request, response) => {
         const wishlists = await wishlistsModel.insert(data)
         return response.json({
             success: true,
-            message: `Create wishlists ${request.body.email} successfully`,
+            message: "Create wishlists successfully",
             result: wishlists
         })
     }catch(err) {
