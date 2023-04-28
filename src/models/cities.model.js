@@ -25,7 +25,7 @@ exports.findAllCities = async function (page, limit, search, sort, sortBy) {
     page = parseInt(page) || 1
     limit = parseInt(limit) || 7
     search = search || ""
-    sort = sort || "name"
+    sort = sort || "id"
     sortBy = sortBy || "ASC"
 
     const offset = (page - 1) * limit

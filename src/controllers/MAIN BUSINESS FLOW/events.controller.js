@@ -21,7 +21,7 @@ exports.getEvents = async (request, response) => {
 
 exports.getOneEvents = async (request, response) => {
     try {
-        const {id} = request.user
+        const {id} = request.params
         const events = await eventsModel.findOneEvent(id)
         if(!events) {
             throw Error("events_not_found")

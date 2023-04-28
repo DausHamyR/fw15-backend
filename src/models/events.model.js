@@ -63,24 +63,23 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
-exports.findOneEvent = async function (cityId) {
+exports.findOneEvent = async function (id) {
     const query = `
     SELECT
       "e"."id",
+      "e"."picture",
       "e"."title",
       "c"."name" "location",
-      "sections"."price",
-      "e"."descriptions",
-      "caries"."name" "category",
       "e"."date",
-      "e"."picture"
-    FROM "events" "e"
+      "e"."descriptions",
+      "e"."createdAt",
+      "e"."updatedAt"
+    FROM "eventCategories" "ec"
+    JOIN "events" "e" ON "e"."id" = "ec"."eventId"
     JOIN "cities" "c" ON "c"."id" = "e"."cityId"
-    JOIN "reservationSections" "sections" ON "sections"."id" = "e"."cityId"
-    JOIN "categories" "caries" ON "caries"."id" = "e"."cityId"
-    WHERE "e"."cityId"=$1
+    WHERE "e"."id"=$1
     `
-    const values = [cityId]
+    const values = [id]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

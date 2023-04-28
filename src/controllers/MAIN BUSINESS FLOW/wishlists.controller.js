@@ -4,38 +4,18 @@ const eventModel = require("../../models/events.model")
 
 exports.getWishlists = async (request, response) => {
     try {
-        const {id} = request.user
-        const wishlists = await wishlistsModel.findOneById(id)
-        if(!wishlists) {
-            throw Error("wishlists_not_found")
-        }
-        return response.json({
-            success: true,
-            message: "wishlists",
-            results: wishlists
-        })
-    }catch(err) {
-        return errorHandler(response, err)
-    }
-}
-
-exports.getAllWishlists = async (request, response) => {
-    try {
         const wishlists = await wishlistsModel.findAllWishlists(
             request.query.page,
             request.query.limit,
             request.query.search,
             request.query.sort,
             request.query.sortBy)
-        if(wishlists) {
-            return response.json({
-                success: true,
-                message: "wishlists",
-                results: wishlists
-            })
-        }
-        throw Error("wishlists_not_found")
-          
+            
+        return response.json({
+            success: true,
+            message: "wishlists",
+            results: wishlists
+        })
     }catch(err) {
         return errorHandler(response, err)
     }
@@ -66,7 +46,7 @@ exports.createInsertWishlists = async (request, response) => {
         const {id} = request.user
         const {eventId} = request.body
         const cekEventId = await eventModel.findOne(eventId)
-        const insertWishlists = await wishlistsModel.insert1(eventId, id)
+        const insertWishlists = await wishlistsModel.insertWishlists(eventId, id)
         if(!cekEventId) {
             throw Error("event_not_found")
         }else {

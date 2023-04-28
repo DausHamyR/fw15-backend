@@ -39,8 +39,7 @@ SELECT
 "w"."updatedAt"
 FROM "wishlists" "w"
 JOIN "events" "e" ON "e"."id" = "w"."eventId"
-JOIN "users" "u" ON "u"."id" = "w"."userId"
-JOIN "cities" "c" ON "c"."id" = "w"."userId"
+JOIN "cities" "c" ON "c"."id" = "e"."cityId"
 WHERE "w"."eventId"::TEXT
 LIKE $3 
 ORDER BY ${sort} ${sortBy} 
@@ -89,7 +88,7 @@ exports.insert = async function (data) {
     return rows[0]
 }
 
-exports.insert1 = async function (eventId, userId) {
+exports.insertWishlists = async function (eventId, userId) {
     const query = `
     INSERT INTO "wishlists" ("eventId", "userId")
     VALUES ($1, $2) RETURNING *
@@ -99,29 +98,29 @@ exports.insert1 = async function (eventId, userId) {
     return rows[0]
 }
 
-exports.insertWishlists = async function (event, cities) {
-    const queryEvents = `
-    INSERT INTO
-    "events" ("title", "date") VALUES ($1, $2)
-    RETURNING *
-    `
-    const queryCities = `
-    INSERT INTO
-    "cities" ("name") VALUES ($1)
-    RETURNING *
-    `
-    const valuesEvents = [event.title, event.date]
-    const valuesCities = [cities.name]
-    let eventResult, cityResult
+// exports.insertWishlists = async function (event, cities) {
+//     const queryEvents = `
+//     INSERT INTO
+//     "events" ("title", "date") VALUES ($1, $2)
+//     RETURNING *
+//     `
+//     const queryCities = `
+//     INSERT INTO
+//     "cities" ("name") VALUES ($1)
+//     RETURNING *
+//     `
+//     const valuesEvents = [event.title, event.date]
+//     const valuesCities = [cities.name]
+//     let eventResult, cityResult
 
-    const eventRes = await db.query(queryEvents, valuesEvents)
-    eventResult = eventRes.rows[0]
+//     const eventRes = await db.query(queryEvents, valuesEvents)
+//     eventResult = eventRes.rows[0]
 
-    const citiesRes = await db.query(queryCities, valuesCities)
-    cityResult = citiesRes.rows[0]
+//     const citiesRes = await db.query(queryCities, valuesCities)
+//     cityResult = citiesRes.rows[0]
 
-    return {event: eventResult, cities: cityResult}
-}
+//     return {event: eventResult, cities: cityResult}
+// }
 
 exports.update = async function (id, data) {
     const query = `
