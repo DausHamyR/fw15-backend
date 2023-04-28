@@ -1,5 +1,6 @@
 const errorHandler = require("../../helpers/errorHandler.helper")
 const wishlistsModel = require("../../models/wishlists.model")
+const eventModel = require("../../models/events.model")
 
 exports.getWishlists = async (request, response) => {
     try {
@@ -40,21 +41,42 @@ exports.getAllWishlists = async (request, response) => {
     }
 }
 
+// exports.createInsertWishlists = async (request, response) => {
+//     try {
+//         const {title, name, date} = request.body
+//         const cities = {name}
+//         const wishlists = await wishlistsModel.insertWishlists({title, date}, cities)
+//         const result = {
+//             title: wishlists.event.title,
+//             name: wishlists.cities.name,
+//             date: wishlists.event.date
+//         }
+//         return response.json({
+//             success: true,
+//             message: `Create wishlists ${title} successfully`,
+//             result
+//         })
+//     }catch(err) {
+//         errorHandler(response, err)
+//     }
+// }
+
 exports.createInsertWishlists = async (request, response) => {
     try {
-        const {title, name, date} = request.body
-        const cities = {name}
-        const wishlists = await wishlistsModel.insertWishlists({title, date}, cities)
-        const result = {
-            title: wishlists.event.title,
-            name: wishlists.cities.name,
-            date: wishlists.event.date
+        const {id} = request.user
+        const {eventId} = request.body
+        const cekEventId = await eventModel.findOne(eventId)
+        const insertWishlists = await wishlistsModel.insert1(eventId, id)
+        if(!cekEventId) {
+            throw Error("event_not_found")
+        }else {
+            insertWishlists
+            return response.json({
+                success: true,
+                message: "Create wishlists successfully",
+                results: cekEventId
+            })
         }
-        return response.json({
-            success: true,
-            message: `Create wishlists ${title} successfully`,
-            result
-        })
     }catch(err) {
         errorHandler(response, err)
     }

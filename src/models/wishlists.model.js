@@ -89,6 +89,16 @@ exports.insert = async function (data) {
     return rows[0]
 }
 
+exports.insert1 = async function (eventId, userId) {
+    const query = `
+    INSERT INTO "wishlists" ("eventId", "userId")
+    VALUES ($1, $2) RETURNING *
+    `
+    const values = [eventId, userId]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.insertWishlists = async function (event, cities) {
     const queryEvents = `
     INSERT INTO
