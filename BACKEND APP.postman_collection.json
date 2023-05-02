@@ -39,7 +39,7 @@
 										},
 										{
 											"key": "search",
-											"value": "hamyr5@gmail.com",
+											"value": "daus@gmail.com",
 											"disabled": true
 										},
 										{
@@ -450,8 +450,7 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/solo.jpg",
-											"disabled": true
+											"src": "/C:/Users/ahmad/Downloads/bali.jpg"
 										}
 									]
 								},
@@ -647,7 +646,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": ""
+											"value": "6"
 										}
 									]
 								}
@@ -1877,7 +1876,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "1"
 										}
 									]
 								}
@@ -2058,12 +2057,12 @@
 									"urlencoded": [
 										{
 											"key": "eventId",
-											"value": "1",
+											"value": "3",
 											"type": "text"
 										},
 										{
 											"key": "userId",
-											"value": "1",
+											"value": "3",
 											"type": "text"
 										}
 									]
@@ -2091,12 +2090,12 @@
 									"urlencoded": [
 										{
 											"key": "eventId",
-											"value": "2",
+											"value": "3",
 											"type": "text"
 										},
 										{
 											"key": "userId",
-											"value": "2",
+											"value": "1",
 											"type": "text"
 										}
 									]
@@ -2168,7 +2167,7 @@
 								},
 								{
 									"key": "password",
-									"value": "1234",
+									"value": "12345",
 									"type": "text"
 								}
 							]
@@ -2206,12 +2205,12 @@
 								},
 								{
 									"key": "password",
-									"value": "1234",
+									"value": "D@us3544",
 									"type": "text"
 								},
 								{
 									"key": "confirmPassword",
-									"value": "1234",
+									"value": "D@us3544",
 									"type": "text"
 								}
 							]
@@ -2267,7 +2266,7 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "780360",
+									"value": "960770",
 									"type": "text"
 								},
 								{
@@ -2336,12 +2335,12 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/bandung.jpg",
+											"src": "/C:/Users/ahmad/Downloads/avatar.jpg",
 											"disabled": true
 										},
 										{
 											"key": "fullName",
-											"value": "amat amin daus",
+											"value": "Amat Amin Daus",
 											"type": "text",
 											"disabled": true
 										},
@@ -2434,7 +2433,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/categories?sortBy=DESC&sort=id",
+									"raw": "{{url}}/categories",
 									"host": [
 										"{{url}}"
 									],
@@ -2443,12 +2442,9 @@
 									],
 									"query": [
 										{
-											"key": "sortBy",
-											"value": "DESC"
-										},
-										{
-											"key": "sort",
-											"value": "id"
+											"key": "limit",
+											"value": "99",
+											"disabled": true
 										}
 									]
 								}
@@ -2488,7 +2484,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/events?sortBy=DESC",
+									"raw": "{{url}}/events?search=bandung&sortBy=ASC&sort=location",
 									"host": [
 										"{{url}}"
 									],
@@ -2503,22 +2499,20 @@
 										},
 										{
 											"key": "limit",
-											"value": "",
+											"value": "99",
 											"disabled": true
 										},
 										{
 											"key": "search",
-											"value": "Sport",
-											"disabled": true
-										},
-										{
-											"key": "sort",
-											"value": "category",
-											"disabled": true
+											"value": "bandung"
 										},
 										{
 											"key": "sortBy",
-											"value": "DESC"
+											"value": "ASC"
+										},
+										{
+											"key": "sort",
+											"value": "location"
 										}
 									]
 								}
@@ -2558,7 +2552,7 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "title",
+											"key": "name",
 											"value": "happy new year",
 											"type": "text"
 										},
@@ -2570,11 +2564,6 @@
 										{
 											"key": "price",
 											"value": "100000",
-											"type": "text"
-										},
-										{
-											"key": "descriptions",
-											"value": "happy new year 2024",
 											"type": "text"
 										},
 										{
@@ -2591,16 +2580,22 @@
 											"key": "picture",
 											"type": "file",
 											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg"
+										},
+										{
+											"key": "detail",
+											"value": "happy new year 2024",
+											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/events",
+									"raw": "{{url}}/events/manage",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"events"
+										"events",
+										"manage"
 									]
 								}
 							},
@@ -2615,36 +2610,64 @@
 									"mode": "formdata",
 									"formdata": [
 										{
-											"key": "title",
+											"key": "name",
 											"value": "happy new year",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
-											"key": "descriptions",
+											"key": "location",
+											"value": "2023-12-31",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"type": "file",
+											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg",
+											"disabled": true
+										},
+										{
+											"key": "category",
 											"value": "merayakan happy new year",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "date",
-											"value": "2023-12-31",
+											"value": "",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/jakarta.jpg",
+											"src": [],
+											"disabled": true
+										},
+										{
+											"key": "detail",
+											"value": "",
+											"type": "text",
 											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/events",
+									"raw": "{{url}}/events/manage",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"events"
+										"events",
+										"manage"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "1",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -2656,7 +2679,7 @@
 					"name": "HISTORY",
 					"item": [
 						{
-							"name": "GET HISTORY",
+							"name": "GET ALL HISTORY",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -2669,6 +2692,14 @@
 										"history"
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET DETAIL HISTORY",
+							"request": {
+								"method": "GET",
+								"header": []
 							},
 							"response": []
 						}
@@ -2720,6 +2751,30 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "DELETE WISHLISTS",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/wishlists/:id",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"wishlists",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -2736,17 +2791,17 @@
 									"urlencoded": [
 										{
 											"key": "oldPassword",
-											"value": "1234",
+											"value": "12345",
 											"type": "text"
 										},
 										{
 											"key": "newPassword",
-											"value": "12345",
+											"value": "D@us3544",
 											"type": "text"
 										},
 										{
 											"key": "confirmNewPassword",
-											"value": "12345",
+											"value": "D@us3544",
 											"type": "text"
 										}
 									]
@@ -2758,6 +2813,98 @@
 									],
 									"path": [
 										"changePassword"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RESERVATION STATUS",
+					"item": [
+						{
+							"name": "CREATE RESERVATION",
+							"request": {
+								"method": "POST",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PAYMENT",
+					"item": [
+						{
+							"name": "CREATE PAYMENT",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "reservationId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "paymentMethodId",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/payment",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"payment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RESERVATIONS",
+					"item": [
+						{
+							"name": "CREATE RESERVATIONS",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "eventId",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "sectionId",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "quantity",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/reservations",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"reservations"
 									]
 								}
 							},
@@ -2817,6 +2964,12 @@
 			"key": "url",
 			"value": "http://localhost:8888",
 			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "https://drab-pear-monkey-wig.cyclic.app",
+			"type": "string",
+			"disabled": true
 		}
 	]
 }

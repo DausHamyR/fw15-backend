@@ -32,6 +32,7 @@ exports.findAllWishlists = async function (page, limit, search, sort, sortBy) {
 
     const query = `
 SELECT
+"w"."eventId",
 "e"."title",
 "c"."name",
 "e"."date",
@@ -40,7 +41,7 @@ SELECT
 FROM "wishlists" "w"
 JOIN "events" "e" ON "e"."id" = "w"."eventId"
 JOIN "cities" "c" ON "c"."id" = "e"."cityId"
-WHERE "w"."eventId"::TEXT
+WHERE "w"."id"::TEXT
 LIKE $3 
 ORDER BY ${sort} ${sortBy} 
 LIMIT $1 OFFSET $2

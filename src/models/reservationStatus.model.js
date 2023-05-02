@@ -33,10 +33,10 @@ exports.findOne = async function (id) {
 exports.findOneById = async function (id) {
     const query = `
     SELECT
-    "status"."name",
-    "section"."name",
+    "status"."name" "Payment Status",
+    "section"."name" "Ticket Section",
     "tickets"."quantity",
-    "section"."price"
+    '$' || ("section"."price"::INTEGER * "tickets"."quantity") "Total Payment"
     FROM "reservationStatus" "status"
     JOIN "reservationSections" "section" ON "section"."id" = "status"."id"
     JOIN "reservationTickets" "tickets" ON "tickets"."reservationId" = "status"."id"
@@ -44,7 +44,7 @@ exports.findOneById = async function (id) {
     `
     const values = [id]
     const {rows} = await db.query(query, values)
-    return rows[0]
+    return rows
 }
 
 exports.insert = async function (data) {

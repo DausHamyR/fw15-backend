@@ -30,6 +30,15 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
+exports.findOneSection = async function (sectionId) {
+    const query = `
+    SELECT "name","price" FROM "reservationSections" WHERE "id"=$1
+    `
+    const values = [sectionId]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.insert = async function (data) {
     const query = `
     INSERT INTO "reservationSections" ("name", "price")

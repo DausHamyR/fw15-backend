@@ -1,14 +1,20 @@
 const errorHandler = require("../../helpers/errorHandler.helper")
 const eventsModel = require("../../models/events.model")
+const citiesModel = require("../../models/cities.model")
+// const eventCategoriesModel = require("../../models/eventCategories.model")
+const sectionsModel = require("../../models/reservationSections.model")
+const categoriesModel = require("../../models/categories.model")
 const fileRemover = require("../../helpers/fileRemover.helper")
 
 exports.getEvents = async (request, response) => {
     try {
-        const {id} = request.user
-        const events = await eventsModel.findAllEvent(id)
-        if(!events) {
-            throw Error("events_not_found")
-        }
+        const events = await eventsModel.findAllEvent(  
+            request.query.page,
+            request.query.limit,
+            request.query.search,
+            request.query.sort,
+            request.query.sortBy)
+            
         return response.json({
             success: true,
             message: "events",
@@ -24,7 +30,7 @@ exports.getOneEvents = async (request, response) => {
         const {id} = request.params
         const events = await eventsModel.findOneEvent(id)
         if(!events) {
-            throw Error("events_not_found")
+            throw Error("event_not_found")
         }
         return response.json({
             success: true,
@@ -36,7 +42,7 @@ exports.getOneEvents = async (request, response) => {
     }
 }
 
-exports.createInsertEvent = async (request, response) => {
+exports.createInsertEventt = async (request, response) => {
     try {
         let {title, descriptions, date, picture, location, price, category} = request.body
         if(request.file) {
@@ -82,12 +88,67 @@ exports.updateEvent = async (request, response) => {
         if(!updateEvent) {
             throw Error("update_event_failed")
         }
+        let updatedCities, updatedSections, updatedCategories
+        if(data.location) {
+            updatedCities = await citiesModel.update(id, data)
+        }else {
+            updatedCities = await citiesModel.findOne(id)
+        }
+        if(data.price) {
+            updatedSections  = await sectionsModel.update(id, data)
+        }else {
+            updatedSections = await sectionsModel.findOne(id)
+        }
+        if(data.category) {
+            updatedCategories = await categoriesModel.update(id, data)
+        }else {
+            updatedCategories = await categoriesModel.findOne(id)
+        }
+        const results = {
+            name: updateEvent.title,
+            location: updatedCities?.name,
+            price: updatedSections?.price,
+            category: updatedCategories.name,
+            date: updateEvent.date,
+            picture: updateEvent.picture,
+            detail: updateEvent.descriptions
+        }
         return response.json({
             success: true,
             message: "Event updated",
-            results: updateEvent
+            results
         })
     }catch(err) {
         return errorHandler(response, err)
+    }
+}
+
+exports.createInsertEvent = async (request, response) => {
+    try {
+        let {name, location, price, category, date, picture, detail} = request.body
+        if(request.file) {
+            picture = request.file.filename
+        }
+        const cities = {location}
+        const sections = {price}
+        const categories = {category}
+        const createEvent = await eventsModel.insertEvent({name, detail, date, picture}, cities, sections, categories)
+
+        const result = {
+            name: createEvent.event.title,
+            location: createEvent.cities.name,
+            price: createEvent.sections.price,
+            category: createEvent.categories.name,
+            date: createEvent.event.date,
+            picture: createEvent.event.picture,
+            detail: createEvent.event.descriptions
+        }
+        return response.json({
+            success: true,
+            message: `Create wishlists ${name} successfully`,
+            result
+        })
+    }catch(err) {
+        errorHandler(response, err)
     }
 }

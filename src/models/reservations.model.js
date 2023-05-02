@@ -21,6 +21,33 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
+// exports.findAllReservations = async function (page, limit, search, sort, sortBy) {
+//     page = parseInt(page) || 1
+//     limit = parseInt(limit) || 5
+//     search = search || ""
+//     sort = sort || "eventId"
+//     sortBy = sortBy || "ASC"
+
+//     const offset = (page - 1) * limit
+
+//     const query = `
+// SELECT
+// "r"."eventId",
+// "r"."statusId",
+// "r"."paymentMethodId",
+// "r"."createdAt",
+// "r"."updatedAt"
+// FROM "reservations" "r"
+// WHERE "r"."eventId"::TEXT
+// LIKE $3 
+// ORDER BY ${sort} ${sortBy} 
+// LIMIT $1 OFFSET $2
+// `
+//     const values = [limit, offset, `%${search}%`]
+//     const {rows} = await db.query(query, values)
+//     return rows
+// }
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "reservations" WHERE id=$1
@@ -30,12 +57,51 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
+exports.findReservations = async function (eventId) {
+    const query = `
+  SELECT
+  "e"."title",
+  "rsec"."name",
+  "rsec"."price",
+  "rt"."quantity"
+  FROM "reservations" "r"
+  JOIN "events" "e" ON "e"."id" = "r"."eventId"
+  JOIN "reservationSections" "rsec" ON "rsec"."id" = "rt"."sectionId"
+  JOIN "reservationTickets" "rt" ON "r"."id" = "rt"."sectionId"
+  WHERE "r"."eventId"=$1
+  `
+    const values = [eventId]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
+
 exports.insert = async function (data) {
     const query = `
     INSERT INTO "reservations" ("eventId", "userId", "statusId", "paymentMethodId")
     VALUES ($1, $2, $3, $4) RETURNING *
     `
     const values = [data.eventId, data.userId, data.statusId, data.paymentMethodId]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.insertPayment = async function (paymentMethodId) {
+    const query = `
+    INSERT INTO "reservations" ("paymentMethodId")
+    VALUES ($1) RETURNING *
+    `
+    const values = [paymentMethodId]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.insertReservations = async function (eventId, userId, statusId) {
+    const query = `
+    INSERT INTO "reservations" ("eventId", "userId", "statusId")
+    VALUES ($1, $2, $3) RETURNING *
+    `
+    const values = [eventId, userId, statusId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

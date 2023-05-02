@@ -30,12 +30,47 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
+exports.findOneTickets = async function (id) {
+    const query = `
+    SELECT "quantity" FROM "reservationTickets" WHERE id=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+// exports.findOne1 = async function (sectionId) {
+//     const querySections = `
+//     SELECT "name" FROM "reservationSections" WHERE id=$1`
+//     const queryTickets = `
+//     SELECT "quantity" FROM "reservationTickets" WHERE sectionId=$1
+//     `
+//     const sectionValues = [sectionId]
+//     const ticketsValues = [sectionId]
+//     const section = await db.query(querySections, sectionValues)
+//     const tickets = await db.query(queryTickets, ticketsValues)
+//     return {
+//         section: section.rows[0].name,
+//         tickets: tickets.rows[0].quantity
+//     }
+// }
+
 exports.insert = async function (data) {
     const query = `
     INSERT INTO "reservationTickets" ("reservationId", "sectionId", "quantity")
     VALUES ($1, $2, $3) RETURNING *
     `
     const values = [data.reservationId, data.sectionId, data.quantity]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.insertTickets = async function (reservationId, sectionId, quantity) {
+    const query = `
+    INSERT INTO "reservationTickets" ("reservationId", "sectionId", "quantity")
+    VALUES ($1, $2, $3) RETURNING *
+    `
+    const values = [reservationId, sectionId, quantity]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

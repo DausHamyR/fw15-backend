@@ -5,6 +5,12 @@ const errorHandler = (response, err) => {
             message: "username cannot be empty"
         })
     }
+    if(err?.message?.includes("section_not_found")) {
+        return response.status(404).json({
+            success: false,
+            message: "Section not found"
+        })
+    }
     if(err?.message?.includes("event_not_found")) {
         return response.status(404).json({
             success: false,
@@ -21,6 +27,18 @@ const errorHandler = (response, err) => {
         return response.status(404).json({
             success: false,
             message: "partners not found"
+        })
+    }
+    if(err?.message?.includes("payment_not_available")) {
+        return response.status(404).json({
+            success: false,
+            message: "Payment not available"
+        })
+    }
+    if(err?.message?.includes("reservations_not_found")) {
+        return response.status(404).json({
+            success: false,
+            message: "Reservations not found"
         })
     }
     if(err?.message?.includes("reservationStatus_not_found")) {
@@ -81,10 +99,16 @@ const errorHandler = (response, err) => {
             message: "Error: Belum memasukan id",
         })
     }
-    if(err?.message.includes("wrong_credentials")) {
+    if(err?.message.includes("wrong_password")) {
         return response.status(401).json({
             success: false,
-            message: "wrong email or password"
+            message: "wrong password"
+        })
+    }
+    if(err?.message.includes("wrong_email")) {
+        return response.status(401).json({
+            success: false,
+            message: "wrong email"
         })
     }
     if(err?.message.includes("password_unmatch")) {

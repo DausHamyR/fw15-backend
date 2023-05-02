@@ -25,7 +25,7 @@ exports.findAllEvent = async function (page, limit, search, sort, sortBy) {
     page = parseInt(page) || 1
     limit = parseInt(limit) || 5
     search = search || ""
-    sort = sort || "title"
+    sort = sort || "id"
     sortBy = sortBy || "ASC"
 
     const offset = (page - 1) * limit
@@ -33,30 +33,57 @@ exports.findAllEvent = async function (page, limit, search, sort, sortBy) {
     const query = `
     SELECT
       "e"."id",
+      "c"."name" "category",
+      "e"."picture",
       "e"."title",
       "ci"."name" "location",
-      "c"."name" "category",
-      "e"."descriptions",
       "e"."date",
       "e"."createdAt",
       "e"."updatedAt"
-    FROM "eventCategories" "ec"
-    JOIN "events" "e" ON "e"."id" = "e"."eventId"
-    JOIN "cities" "ci" ON "ci"."id" = "e"."cityId"
+    FROM "events" "e"
+    JOIN "eventCategories" "ec" ON "ec"."eventId" = "e"."id"
     JOIN "categories" "c" ON "c"."id" = "ec"."categoryId"
-    WHERE "e"."title"::TEXT
-    LIKE $3 
-    ORDER BY ${sort} ${sortBy} 
-    LIMIT $1 OFFSET $2
-    `
-    const values = [limit, offset, `%${search}%`]
-    const {rows} = await db.query(query, values)
+    JOIN "cities" "ci" ON "ci"."id" = "e"."cityId"
+    WHERE (
+      "e"."id"::TEXT LIKE $1
+      OR "c"."name" ILIKE $1
+      OR "ci"."name" ILIKE $1
+      OR "e"."picture" ILIKE $1
+      OR "e"."title" ILIKE $1
+      OR "e"."date"::TEXT ILIKE $1
+      OR "e"."createdAt"::TEXT ILIKE $1
+      OR "e"."updatedAt"::TEXT ILIKE $1
+    )
+    ORDER BY ${sort} ${sortBy}
+    LIMIT $2 OFFSET $3
+  `
+    const values = [`%${search}%`, limit, offset]
+    const { rows } = await db.query(query, values)
     return rows
 }
+
 
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "events" WHERE id=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.findOneName = async function (id) {
+    const query = `
+    SELECT "title" FROM "events" WHERE id=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.findOneId = async function (id) {
+    const query = `
+    SELECT "id" FROM "events" WHERE id=$1
     `
     const values = [id]
     const {rows} = await db.query(query, values)
@@ -108,7 +135,7 @@ exports.insertEvent = async function (event, cities, sections, categories) {
     INSERT INTO "categories" ("name")
     VALUES($1) RETURNING * `
 
-    const valuesEvent = [event.title, event.descriptions, event.date, event.picture]
+    const valuesEvent = [event.name, event.detail, event.date, event.picture]
     const valuesCities = [cities.location]
     const valuesSections = [sections.price]
     const valuesCategories = [categories.category]

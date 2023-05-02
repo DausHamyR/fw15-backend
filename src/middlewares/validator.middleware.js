@@ -7,7 +7,9 @@ const createUsername = body("username").isLength({min:3, max:20}).withMessage("U
 const createName = body("name").isLength({min:3, max:100}).withMessage("Name length is invalid")
 const createEmailFormat = body("email").isEmail().withMessage("Email is invalid")
 const createStrongPassword =  body("password").isStrongPassword().withMessage("Password must be strong!")
+const createStrongNewPassword =  body("newPassword").isStrongPassword().withMessage("Password must be strong!")
 const updateName = body("name").optional().isLength({min:3, max:100}).withMessage("Name length is invalid")
+const createFullName = body("fullName").isLength({min:3, max:100}).withMessage("FullName length is invalid")
 const updateFullName = body("fullName").optional().isLength({min:3, max:100}).withMessage("FullName length is invalid")
 const updateBody = body("username").optional().isLength({min:3, max:20}).withMessage("Username length is invalid")
 const updateEmailFormat = body("email").optional().isEmail().withMessage("Email is invalid")
@@ -24,6 +26,14 @@ const rules = {
     authLogin: [
         createEmailFormat,
         body("password").isLength({min:1}).withMessage("Password is invalid")
+    ],
+    authRegister: [
+        createFullName,
+        createEmailFormat,
+        createStrongPassword
+    ],
+    changePassword: [
+        createStrongNewPassword
     ],
     createUser: [
         createUsername,

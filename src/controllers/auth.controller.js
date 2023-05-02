@@ -12,11 +12,11 @@ exports.login = async (request, response) => {
         const user = await userModel.findOneByEmail(email)
       
         if(!user) {
-            throw Error("wrong_credentials")
+            throw Error("wrong_email")
         }
         const verify = await argon.verify(user.password, password)
         if(!verify) {
-            throw Error("wrong_credentials")
+            throw Error("wrong_password")
         }
         const token = jwt.sign({id: user.id}, APP_SECRET)
         return response.json({
@@ -98,9 +98,13 @@ exports.forgotPassword = async (request, response) => {
 exports.resetPassword = async (request, response) => {
     try {
         const {code, email, password} = request.body
-        const find = await forgotRequestModel.findOneByCodeAndEmail(code, email)
-        if(!find) {
+        const findCode = await forgotRequestModel.findOneByCode(code)
+        const findEmail = await forgotRequestModel.findOneByEmail(email)
+        if(!findCode) {
             throw Error("no_forgot_request")
+        }
+        if(!findEmail) {
+            throw Error("wrong_email")
         }
         const selectedUser = await userModel.findOneByEmail(email)
         const data = {
@@ -110,7 +114,7 @@ exports.resetPassword = async (request, response) => {
         if(!user) {
             throw Error("no_forgot_request2")
         }
-        await forgotRequestModel.destroy(find.id)
+        await forgotRequestModel.destroy(findCode.id)
         return response.json({
             success: true,
             message: "Reset password success"

@@ -108,12 +108,20 @@ CREATE TABLE "forgotRequest" (
     "updatedAt" TIMESTAMP DEFAULT NULL
 );
 INSERT INTO "categories" ("name") VALUES ('Music'), ('Festival'), ('Show'), ('Competitions');
-INSERT INTO "cities" ("name") VALUES ('Bandung'), ('Jakarta'), ('Medan'), ('Lampung'), ('Bali');
+INSERT INTO "cities" ("name") VALUES ('Bandung'), ('Jakarta'), ('Aceh'), ('Solo'), ('Bali'), ('Yogyakarta'), ('Semarang');
+INSERT INTO "eventCategories" ("eventId", "categoryId") VALUES
+(1,1), (2,2), (3,2), (4,2), (5,1), (1, 2);
 INSERT INTO "events" ("title", "descriptions", "date", "cityId") VALUES
 ('Konser Dewa 19', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-04-19', 1),
 ('Jakarta Fair', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-04-29', 2),
 ('Festival Danau Toba', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-05-01', 3),
 ('Lampung Krakatau Festival', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-05-05', 4),
 ('Dream Machine Bali', 'Lorem ipsum dolor sit amet constectur adispicing elit', '2022-06-08', 5);
-INSERT INTO "eventCategories" ("eventId", "categoryId") VALUES
-(1,1), (2,2), (3,2), (4,2), (5,1), (1, 2);
+INSERT INTO "partners" ("name") VALUES ('FAB event organizer'), ('SAFIRA event organizer'), ('Eventistry event organizer');
+INSERT INTO "paymentMethod" ("name") VALUES ('BCA'), ('MANDIRI'), ('BRI'), ('BNI');
+INSERT INTO "profile" ("userId", "fullName", "phoneNumber", "gender", "profession", "nationality", "birthDate") VALUES 
+(1, 'Amat Amin Daus', '0857292', 'false', 'programmer', 'indonesia', '2023-04-05'),
+(2, 'Oki Saputro', '0857293', 'false', 'docter', 'indonesia', '2023-05-06'),
+(3, 'Apriyansah', '0857294', 'false', 'pilot', 'indonesia', '2023-06-07');
+INSERT INTO "reservationSections" ("name", "price") VALUES ('Section reg, Row 1', '15'), ('Section vip, Row 2', '35'), ('Section vvip, Row 3', '50');
+INSERT INTO "reservationStatus" ("name") VALUES ('Pending'), ('Paid'), ('Expired');

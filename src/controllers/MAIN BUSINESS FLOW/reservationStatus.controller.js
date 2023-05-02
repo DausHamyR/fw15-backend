@@ -8,6 +8,10 @@ exports.getReservationStatus = async (request, response) => {
         if(!reservationStatus) {
             throw Error("reservationStatus_not_found")
         }
+        // const result = {
+        //   reservationStatus.name,
+        //   reservationStatus.name,
+        // }
         return response.json({
             success: true,
             message: "reservationStatus",

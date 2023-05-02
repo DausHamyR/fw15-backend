@@ -18,6 +18,8 @@ router.use("/events", authMiddleware, require("./MAIN BUSINESS FLOW/events.route
 router.use("/history", authMiddleware, require("./MAIN BUSINESS FLOW/reservationStatus.router"))
 router.use("/wishlists", authMiddleware, require("./MAIN BUSINESS FLOW/wishlists.router"))
 router.use("/changePassword", authMiddleware, require("./MAIN BUSINESS FLOW/changePassword.router"))
+router.use("/reservations", authMiddleware, require("./MAIN BUSINESS FLOW/reservations.router"))
+router.use("/payment", authMiddleware, require("./MAIN BUSINESS FLOW/payment.router"))
 
 router.use("*", (request, response) => {
     return response.status(404).json({

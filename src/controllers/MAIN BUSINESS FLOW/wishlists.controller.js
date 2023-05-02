@@ -21,6 +21,25 @@ exports.getWishlists = async (request, response) => {
     }
 }
 
+exports.deletewishlists = async (request, response) => {
+    try {
+        const data = await wishlistsModel.destroy(request.params.id)
+        if(data) {
+            return response.json({
+                success: true,
+                message: "Delete wishlists successfully",
+                result: data
+            })
+        }
+        return response.status(404).json({
+            success: false,
+            message: "Error: wishlists not found",
+        })
+    }catch(err) {
+        errorHandler(response, err)
+    }
+}
+
 // exports.createInsertWishlists = async (request, response) => {
 //     try {
 //         const {title, name, date} = request.body
