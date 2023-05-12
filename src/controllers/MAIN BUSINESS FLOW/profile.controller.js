@@ -10,6 +10,9 @@ exports.updateProfile = async (request, response) => {
         const data = {
             ...request.body
         }
+        if(!user) {
+            throw Error("unauthorized")
+        }
         if(request.file) {
             if(user.picture) {
                 fileRemover({filename: user.picture})
@@ -57,7 +60,7 @@ exports.getProfile = async (request, response) => {
         const {id} = request.user
         const profile = await profileModel.findOneByUserId(id)
         if(!profile) {
-            throw Error("profile_not_found")
+            throw Error("unauthorized")
         }
         return response.json({
             success: true,

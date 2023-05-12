@@ -3,8 +3,7 @@ const categoriesModel = require("../../models/categories.model")
 
 exports.getCategories = async (request, response) => {
     try {
-        const {id} = request.user
-        const categories = await categoriesModel.findAllCategories(id)
+        const categories = await categoriesModel.findAllCategories(request.query)
         if(!categories) {
             throw Error("categories_not_found")
         }

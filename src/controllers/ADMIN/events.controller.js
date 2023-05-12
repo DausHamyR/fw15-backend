@@ -67,12 +67,12 @@ exports.updateevents = async (request, response) => {
         const data = {
             ...request.body
         }
+        if(request.file) {
+            data.picture = request.file.filename
+        }
         const events = await eventsModel.update(request.params.id, data)
         if(!events){
             throw Error("id_doesn't_exist")
-        }
-        if(request.file) {
-            data.picture = request.file.filename
         }
         return response.json({
             success: true,

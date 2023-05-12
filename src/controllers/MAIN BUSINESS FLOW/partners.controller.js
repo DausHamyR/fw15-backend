@@ -3,8 +3,13 @@ const partnersModel = require("../../models/partners.model")
 
 exports.getPartners = async (request, response) => {
     try {
-        const {id} = request.user
-        const partners = await partnersModel.findAllPartners(id)
+        const partners = await partnersModel.findAllPartners(
+            request.query.page,
+            request.query.limit,
+            request.query.search,
+            request.query.sort,
+            request.query.sortBy
+        )
         if(!partners) {
             throw Error("partners_not_found")
         }

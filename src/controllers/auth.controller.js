@@ -10,7 +10,6 @@ exports.login = async (request, response) => {
     try {
         const {email, password} = request.body
         const user = await userModel.findOneByEmail(email)
-      
         if(!user) {
             throw Error("wrong_email")
         }
@@ -68,7 +67,7 @@ exports.forgotPassword = async (request, response) => {
         const {email} = request.body
         const user = await userModel.findOneByEmail(email)
         if(!user) {
-            throw Error("wrong_credentials")
+            throw Error("wrong_email")
         }
         const randomNumber = Math.random()
         const rounded = Math.round(randomNumber * 100000)

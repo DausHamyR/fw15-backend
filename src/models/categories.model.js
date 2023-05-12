@@ -21,14 +21,14 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
-exports.findAllCategories = async function (page, limit, search, sort, sortBy) {
-    page = parseInt(page) || 1
-    limit = parseInt(limit) || 999
-    search = search || ""
-    sort = sort || "name"
-    sortBy = sortBy || "ASC"
+exports.findAllCategories = async function (params) {
+    params.page = parseInt(params.page) || 1
+    params.limit = parseInt(params.limit) || 999
+    params.search = params.search || ""
+    params.sort = params.sort || "name"
+    params.sortBy = params.sortBy || "ASC"
 
-    const offset = (page - 1) * limit
+    const offset = (params.page - 1) * params.limit
 
     const query = `
 SELECT
@@ -43,10 +43,10 @@ JOIN "categories" "c" ON "c"."id" = "ec"."categoryId"
 JOIN "events" "e" ON "e"."id" = "ec"."eventId"
 WHERE "c"."name"
 LIKE $3 
-ORDER BY ${sort} ${sortBy} 
+ORDER BY ${params.sort} ${params.sortBy} 
 LIMIT $1 OFFSET $2
 `
-    const values = [limit, offset, `%${search}%`]
+    const values = [params.limit, offset, `%${params.search}%`]
     const {rows} = await db.query(query, values)
     return rows
 }
@@ -54,6 +54,15 @@ LIMIT $1 OFFSET $2
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "categories" WHERE id=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.findOneId = async function (id) {
+    const query = `
+    SELECT "id" FROM "categories" WHERE id=$1
     `
     const values = [id]
     const {rows} = await db.query(query, values)

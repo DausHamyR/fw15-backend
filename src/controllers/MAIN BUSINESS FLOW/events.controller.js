@@ -1,7 +1,7 @@
 const errorHandler = require("../../helpers/errorHandler.helper")
 const eventsModel = require("../../models/events.model")
 const citiesModel = require("../../models/cities.model")
-// const eventCategoriesModel = require("../../models/eventCategories.model")
+const eventCategoriesModel = require("../../models/eventCategories.model")
 const sectionsModel = require("../../models/reservationSections.model")
 const categoriesModel = require("../../models/categories.model")
 const fileRemover = require("../../helpers/fileRemover.helper")
@@ -39,35 +39,6 @@ exports.getOneEvents = async (request, response) => {
         })
     }catch(err) {
         return errorHandler(response, err)
-    }
-}
-
-exports.createInsertEventt = async (request, response) => {
-    try {
-        let {title, descriptions, date, picture, location, price, category} = request.body
-        if(request.file) {
-            picture = request.file.filename
-        }
-        const cities = {location}
-        const sections = {price}
-        const categories = {category}
-        const createEvent = await eventsModel.insertEvent({title, descriptions, date, picture}, cities, sections, categories)
-        const result = {
-            title: createEvent.event.title,
-            descriptions: createEvent.event.descriptions,
-            date: createEvent.event.date,
-            picture: createEvent.event.picture,
-            location: createEvent.cities.location,
-            sections: createEvent.sections.price,
-            category: createEvent.categories.category
-        }
-        return response.json({
-            success: true,
-            message: `Create wishlists ${title} successfully`,
-            result
-        })
-    }catch(err) {
-        errorHandler(response, err)
     }
 }
 
@@ -125,14 +96,19 @@ exports.updateEvent = async (request, response) => {
 
 exports.createInsertEvent = async (request, response) => {
     try {
+        const {id} = request.user
         let {name, location, price, category, date, picture, detail} = request.body
         if(request.file) {
             picture = request.file.filename
         }
-        const cities = {location}
+        const cities = {location, picture}
         const sections = {price}
         const categories = {category}
-        const createEvent = await eventsModel.insertEvent({name, detail, date, picture}, cities, sections, categories)
+        const createEvent = await eventsModel.insertEvent({name, detail, date, picture, id}, cities, sections, categories)
+        const updateEvent = await eventsModel.update(createEvent.event.id, { cityId: createEvent.cities.id })
+        const findEventId = await eventsModel.findOneByCreatedBy(createEvent.event.createdBy)
+        const findCategoriesId = await categoriesModel.findOne(createEvent.categories.id)
+        const insertEventCategory = await eventCategoriesModel.insertCategories(findEventId.id, findCategoriesId.id)
 
         const result = {
             name: createEvent.event.title,
@@ -143,6 +119,8 @@ exports.createInsertEvent = async (request, response) => {
             picture: createEvent.event.picture,
             detail: createEvent.event.descriptions
         }
+        updateEvent
+        insertEventCategory
         return response.json({
             success: true,
             message: `Create wishlists ${name} successfully`,

@@ -21,6 +21,38 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
+exports.findAllHistory = async function (page, limit, search, sort, sortBy) {
+    page = parseInt(page) || 1
+    limit = parseInt(limit) || 5
+    search = search || ""
+    sort = sort || "title"
+    sortBy = sortBy || "ASC"
+
+    const offset = (page - 1) * limit
+
+    const query = `
+SELECT
+"e"."id",
+"e"."title",
+"ci"."name" "location",
+"e"."date",
+"c"."name" "category",
+"e"."createdAt",
+"e"."updatedAt"
+FROM "events" "e"
+JOIN "eventCategories" "ec" ON "ec"."eventId" = "e"."id"
+JOIN "cities" "ci" ON "ci"."id" = "e"."cityId"
+JOIN "categories" "c" ON "c"."id" = "ec"."categoryId"
+WHERE "e"."id"::TEXT
+LIKE $3 
+ORDER BY ${sort} ${sortBy} 
+LIMIT $1 OFFSET $2
+`
+    const values = [limit, offset, `%${search}%`]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "reservationStatus" WHERE id=$1

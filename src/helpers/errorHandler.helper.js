@@ -117,6 +117,12 @@ const errorHandler = (response, err) => {
             message: "Password and confirm password does not match"
         })
     }
+    if(err?.message.includes("input_cannot_be_empty")) {
+        return response.status(400).json({
+            success: false,
+            message: "input cannot be empty"
+        })
+    }
     if(err?.message.includes("unauthorized")) {
         return response.status(401).json({
             success: false,

@@ -86,12 +86,12 @@ exports.insert = async function (data) {
     return rows[0]
 }
 
-exports.insertPayment = async function (paymentMethodId) {
+exports.insertPayment = async function (eventId, userId, statusId, paymentMethodId) {
     const query = `
-    INSERT INTO "reservations" ("paymentMethodId")
-    VALUES ($1) RETURNING *
+    INSERT INTO "reservations" ("eventId, userId, statusId, paymentMethodId")
+    VALUES ($1, $2, $3, $4) RETURNING *
     `
-    const values = [paymentMethodId]
+    const values = [eventId, userId, statusId, paymentMethodId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

@@ -47,9 +47,9 @@ exports.findAllEvent = async function (page, limit, search, sort, sortBy) {
     WHERE (
       "e"."id"::TEXT LIKE $1
       OR "c"."name" ILIKE $1
-      OR "ci"."name" ILIKE $1
       OR "e"."picture" ILIKE $1
       OR "e"."title" ILIKE $1
+      OR "ci"."name" ILIKE $1
       OR "e"."date"::TEXT ILIKE $1
       OR "e"."createdAt"::TEXT ILIKE $1
       OR "e"."updatedAt"::TEXT ILIKE $1
@@ -61,7 +61,6 @@ exports.findAllEvent = async function (page, limit, search, sort, sortBy) {
     const { rows } = await db.query(query, values)
     return rows
 }
-
 
 exports.findOne = async function (id) {
     const query = `
@@ -86,6 +85,15 @@ exports.findOneId = async function (id) {
     SELECT "id" FROM "events" WHERE id=$1
     `
     const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.findOneByCreatedBy = async function (createdBy) {
+    const query = `
+    SELECT "id" FROM "events" WHERE "createdBy"=$1
+    `
+    const values = [createdBy]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
@@ -123,11 +131,11 @@ exports.insert = async function (data) {
 
 exports.insertEvent = async function (event, cities, sections, categories) {
     const queryEvent = `
-    INSERT INTO "events" ("title", "descriptions", "date", "picture")
-    VALUES ($1, $2, $3, $4) RETURNING *`
+    INSERT INTO "events" ("title", "descriptions", "date", "picture", "createdBy")
+    VALUES ($1, $2, $3, $4, $5) RETURNING *`
     const queryCities = `
-    INSERT INTO "cities" ("name")
-    VALUES($1) RETURNING * `
+    INSERT INTO "cities" ("name", "picture")
+    VALUES($1, $2) RETURNING * `
     const querySections = `
     INSERT INTO "reservationSections" ("price")
     VALUES($1) RETURNING * `
@@ -135,8 +143,8 @@ exports.insertEvent = async function (event, cities, sections, categories) {
     INSERT INTO "categories" ("name")
     VALUES($1) RETURNING * `
 
-    const valuesEvent = [event.name, event.detail, event.date, event.picture]
-    const valuesCities = [cities.location]
+    const valuesEvent = [event.name, event.detail, event.date, event.picture, event.id]
+    const valuesCities = [cities.location, cities.picture]
     const valuesSections = [sections.price]
     const valuesCategories = [categories.category]
     let eventResult, cityResult, sectionsResult, categoriesResult
