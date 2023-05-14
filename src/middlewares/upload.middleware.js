@@ -1,16 +1,36 @@
 const multer = require("multer")
+const cloudinary = require("cloudinary").v2
+const {CloudinaryStorage} = require("multer-storage-cloudinary")
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/")
-    },
-    filename: (req, file, cb) => {
-        const explode = file.originalname.split(".").length
-        const ext = file.originalname.split(".")[explode - 1]
-        const filename = new Date().getTime().toString() + "." + ext
-        cb(null, filename)
-    }
+cloudinary.config({
+    cloud_name: "dxs0yxeyr",
+    api_key: "236157336681252",
+    api_secret: "V2uHsegpJtBpFlUl3WSwkxdCL0I"
 })
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "daus",
+        format: async (req, file) => "png", // supports promises as well
+        public_id: (req, file) => {
+            const filename = new Date().getTime().toString()
+            return filename
+        },
+    },
+})
+
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, "uploads/")
+//     },
+//     filename: (req, file, cb) => {
+//         const explode = file.originalname.split(".").length
+//         const ext = file.originalname.split(".")[explode - 1]
+//         const filename = new Date().getTime().toString() + "." + ext
+//         cb(null, filename)
+//     }
+// })
 
 const limits = {
     fileSize: 1 * 1024 * 1024
