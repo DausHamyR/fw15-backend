@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: "daus",
+        folder: "Amat Daus",
         format: async (req, file) => "png", // supports promises as well
         public_id: (req, file) => {
             const filename = new Date().getTime().toString()

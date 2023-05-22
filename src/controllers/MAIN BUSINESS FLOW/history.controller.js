@@ -1,19 +1,15 @@
 const errorHandler = require("../../helpers/errorHandler.helper")
-const reservationStatusModel = require("../../models/reservationStatus.model")
+const reservationModel = require("../../models/reservations.model")
 
-exports.getHistory = async (request, response) => {
+exports.getAllHistory = async (request, response) => {
     try {
-        const wishlists = await reservationStatusModel.findAllHistory(
-            request.query.page,
-            request.query.limit,
-            request.query.search,
-            request.query.sort,
-            request.query.sortBy)
+        const {id: userId} = request.user
+        const histories = await reservationModel.findAllByUserId(userId, request.query)
         
         return response.json({
             success: true,
             message: "wishlists",
-            results: wishlists
+            results: histories
         })
     }catch(err) {
         return errorHandler(response, err)

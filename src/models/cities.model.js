@@ -21,24 +21,24 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
-exports.findAllCities = async function (page, limit, search, sort, sortBy) {
-    page = parseInt(page) || 1
-    limit = parseInt(limit) || 7
-    search = search || ""
-    sort = sort || "id"
-    sortBy = sortBy || "ASC"
+exports.findAllCities = async function (params) {
+    params.page = parseInt(params.page) || 1
+    params.limit = parseInt(params.limit) || 7
+    params.search = params.search || ""
+    params.sort = params.sort || "id"
+    params.sortBy = params.sortBy || "ASC"
 
-    const offset = (page - 1) * limit
+    const offset = (params.page - 1) * params.limit
 
     const query = `
     SELECT *
-    FROM "cities" "c"
-    WHERE "c"."id"::TEXT
+    FROM "cities"
+    WHERE "name"
     LIKE $3 
-    ORDER BY ${sort} ${sortBy} 
+    ORDER BY ${params.sort} ${params.sortBy} 
     LIMIT $1 OFFSET $2
     `
-    const values = [limit, offset, `%${search}%`]
+    const values = [params.limit, offset, `%${params.search}%`]
     const {rows} = await db.query(query, values)
     return rows
 }

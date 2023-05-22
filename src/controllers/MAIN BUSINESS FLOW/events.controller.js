@@ -8,13 +8,7 @@ const fileRemover = require("../../helpers/fileRemover.helper")
 
 exports.getEvents = async (request, response) => {
     try {
-        const events = await eventsModel.findAllEvent(  
-            request.query.page,
-            request.query.limit,
-            request.query.search,
-            request.query.sort,
-            request.query.sortBy)
-            
+        const events = await eventsModel.findAllEvent(request.query)
         return response.json({
             success: true,
             message: "events",

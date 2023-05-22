@@ -21,6 +21,14 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
+exports.findAll2 = async function () {
+    const query = `
+    SELECT * FROM "paymentMethod"
+    `
+    const {rows} = await db.query(query)
+    return rows
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "paymentMethod" WHERE id=$1

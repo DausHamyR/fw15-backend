@@ -30,9 +30,9 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
-exports.findOneTickets = async function (id) {
+exports.findOneByReservationId = async function (id) {
     const query = `
-    SELECT "quantity" FROM "reservationTickets" WHERE id=$1
+    SELECT * FROM "reservationTickets" WHERE "reservationId"=$1
     `
     const values = [id]
     const {rows} = await db.query(query, values)

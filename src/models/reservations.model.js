@@ -21,6 +21,32 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
+exports.findAllByUserId = async function (id, params) {
+    params.page = parseInt(params.page) || 1
+    params.limit = parseInt(params.limit) || 5
+    params.search = params.search || ""
+    params.sort = (params.sort && `"e"."${params.sort}"`) || "\"r\".\"id\""
+    params.sortBy = params.sortBy || "ASC"
+    params.city = params.city || ""
+
+    const offset = (params.page - 1) * params.limit
+
+    const query = `
+SELECT "r"."id", "e"."title", "ci"."name" as location, "e"."date" 
+FROM "reservations" "r"
+JOIN "events" "e" ON "e"."id" = "r"."eventId"
+JOIN "cities" "ci" ON "ci"."id" = "e"."cityId"
+WHERE "r"."userId" = $5   
+AND "e"."title" LIKE $3
+AND "ci"."name" LIKE $4
+ORDER BY ${params.sort} ${params.sortBy} 
+LIMIT $1 OFFSET $2
+`
+    const values = [params.limit, offset, `%${params.search}%`, `%${params.city}%`, id]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
 // exports.findAllReservations = async function (page, limit, search, sort, sortBy) {
 //     page = parseInt(page) || 1
 //     limit = parseInt(limit) || 5

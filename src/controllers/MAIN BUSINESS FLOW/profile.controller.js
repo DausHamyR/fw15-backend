@@ -1,5 +1,5 @@
 const errorHandler = require("../../helpers/errorHandler.helper")
-const fileRemover = require("../../helpers/fileRemover.helper")
+// const fileRemover = require("../../helpers/fileRemover.helper")
 const profileModel = require("../../models/profile.model")
 const userModel = require("../../models/users.model")
 
@@ -15,7 +15,7 @@ exports.updateProfile = async (request, response) => {
         }
         if(request.file) {
             if(user.picture) {
-                fileRemover({filename: user.picture})
+                // fileRemover({filename: user.picture})
             }
             data.picture = request.file.path
             // data.picture = request.file.filename

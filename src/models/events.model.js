@@ -21,14 +21,16 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
-exports.findAllEvent = async function (page, limit, search, sort, sortBy) {
-    page = parseInt(page) || 1
-    limit = parseInt(limit) || 5
-    search = search || ""
-    sort = sort || "id"
-    sortBy = sortBy || "ASC"
+exports.findAllEvent = async function (params) {
+    params.page = parseInt(params.page) || 1
+    params.limit = parseInt(params.limit) || 5
+    params.search = params.search || ""
+    params.sort = params.sort || "id"
+    params.sortBy = params.sortBy || "ASC"
+    params.category = params.category || ""
+    params.city = params.city || ""
 
-    const offset = (page - 1) * limit
+    const offset = (params.page - 1) * params.limit
 
     const query = `
     SELECT
@@ -44,20 +46,13 @@ exports.findAllEvent = async function (page, limit, search, sort, sortBy) {
     JOIN "eventCategories" "ec" ON "ec"."eventId" = "e"."id"
     JOIN "categories" "c" ON "c"."id" = "ec"."categoryId"
     JOIN "cities" "ci" ON "ci"."id" = "e"."cityId"
-    WHERE (
-      "e"."id"::TEXT LIKE $1
-      OR "c"."name" ILIKE $1
-      OR "e"."picture" ILIKE $1
-      OR "e"."title" ILIKE $1
-      OR "ci"."name" ILIKE $1
-      OR "e"."date"::TEXT ILIKE $1
-      OR "e"."createdAt"::TEXT ILIKE $1
-      OR "e"."updatedAt"::TEXT ILIKE $1
-    )
-    ORDER BY ${sort} ${sortBy}
-    LIMIT $2 OFFSET $3
+    WHERE "e"."title" ILIKE $3 AND
+    "c"."name"  ILIKE $4 AND
+    "ci"."name" ILIKE $5
+    ORDER BY ${params.sort} ${params.sortBy}
+    LIMIT $1 OFFSET $2
   `
-    const values = [`%${search}%`, limit, offset]
+    const values = [params.limit, offset, `%${params.search}%`, `%${params.category}%`, `%${params.city}%`]
     const { rows } = await db.query(query, values)
     return rows
 }

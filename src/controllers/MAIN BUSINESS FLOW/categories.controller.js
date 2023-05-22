@@ -16,3 +16,19 @@ exports.getCategories = async (request, response) => {
         return errorHandler(response, err)
     }
 }
+
+exports.getAllCategories = async (request, response) => {
+    try {
+        const categories = await categoriesModel.findAll(request.query)
+        if(!categories) {
+            throw Error("categories_not_found")
+        }
+        return response.json({
+            success: true,
+            message: "categories",
+            results: categories
+        })
+    }catch(err) {
+        return errorHandler(response, err)
+    }
+}

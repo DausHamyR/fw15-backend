@@ -30,6 +30,14 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
+exports.findAll = async function () {
+    const query = `
+    SELECT * FROM "reservationSections"
+    `
+    const {rows} = await db.query(query)
+    return rows
+}
+
 exports.findOneSection = async function (sectionId) {
     const query = `
     SELECT "name","price" FROM "reservationSections" WHERE "id"=$1
