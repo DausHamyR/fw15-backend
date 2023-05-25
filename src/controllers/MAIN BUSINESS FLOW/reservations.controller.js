@@ -9,7 +9,7 @@ exports.createInsertReservations = async (request, response) => {
         const {id} = request.user
         const statusId = 1
         const {eventId, sectionId, quantity} = request.body
-        const events = await eventsModel.findOneId(eventId) //mencari event yang ada
+        const {id: events} = await eventsModel.findOne(eventId) //mencari event yang ada
         const insertReservations = await reservationsModel.insertReservations(eventId, id, statusId)
         const insertTickets = await ticketsModel.insertTickets(insertReservations.id, sectionId, quantity)
         const section = await sectionsModel.findOneSection(sectionId)

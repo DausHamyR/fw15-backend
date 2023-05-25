@@ -263,7 +263,7 @@
 									"urlencoded": [
 										{
 											"key": "name",
-											"value": "Sport",
+											"value": "Fashion",
 											"type": "text"
 										}
 									]
@@ -352,7 +352,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/admin/cities?sortBy=DESC",
+									"raw": "{{url}}/admin/cities?sortBy=DESC&limit=99",
 									"host": [
 										"{{url}}"
 									],
@@ -366,9 +366,8 @@
 											"value": "DESC"
 										},
 										{
-											"key": "page",
-											"value": "2",
-											"disabled": true
+											"key": "limit",
+											"value": "99"
 										}
 									]
 								}
@@ -443,14 +442,14 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "solo",
+											"value": "bandung",
 											"type": "text",
 											"disabled": true
 										},
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/bali.jpg"
+											"src": "/C:/Users/ahmad/Downloads/bandung.jpg"
 										}
 									]
 								},
@@ -467,7 +466,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "5"
+											"value": "1"
 										}
 									]
 								}
@@ -492,7 +491,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "28"
+											"value": "8"
 										}
 									]
 								}
@@ -700,7 +699,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "2"
 										}
 									]
 								}
@@ -766,8 +765,7 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": [],
-											"disabled": true
+											"src": "/C:/Users/ahmad/Downloads/fashion-show.jpg"
 										},
 										{
 											"key": "title",
@@ -808,7 +806,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "7"
 										}
 									]
 								}
@@ -963,7 +961,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "3"
 										}
 									]
 								}
@@ -2167,7 +2165,7 @@
 								},
 								{
 									"key": "password",
-									"value": "12345",
+									"value": "D@us3544",
 									"type": "text"
 								}
 							]
@@ -2335,8 +2333,7 @@
 										{
 											"key": "picture",
 											"type": "file",
-											"src": "/C:/Users/ahmad/Downloads/avatar.jpg",
-											"disabled": true
+											"src": "/C:/Users/ahmad/Downloads/avatar.jpg"
 										},
 										{
 											"key": "fullName",
@@ -2364,7 +2361,7 @@
 										},
 										{
 											"key": "gender",
-											"value": "false",
+											"value": "true",
 											"type": "text",
 											"disabled": true
 										},
@@ -2417,6 +2414,13 @@
 									],
 									"path": [
 										"city"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "jakarta",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -2439,13 +2443,6 @@
 									],
 									"path": [
 										"categories"
-									],
-									"query": [
-										{
-											"key": "limit",
-											"value": "99",
-											"disabled": true
-										}
 									]
 								}
 							},
@@ -2484,7 +2481,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/events?search=bandung&sortBy=ASC&sort=location",
+									"raw": "{{url}}/events?city=solo",
 									"host": [
 										"{{url}}"
 									],
@@ -2499,20 +2496,32 @@
 										},
 										{
 											"key": "limit",
-											"value": "99",
+											"value": "2",
 											"disabled": true
 										},
 										{
 											"key": "search",
-											"value": "bandung"
+											"value": "mus",
+											"disabled": true
 										},
 										{
 											"key": "sortBy",
-											"value": "ASC"
+											"value": "ASC",
+											"disabled": true
 										},
 										{
 											"key": "sort",
-											"value": "location"
+											"value": "category",
+											"disabled": true
+										},
+										{
+											"key": "city",
+											"value": "solo"
+										},
+										{
+											"key": "category",
+											"value": "arts",
+											"disabled": true
 										}
 									]
 								}
@@ -2536,7 +2545,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "6"
 										}
 									]
 								}
@@ -2553,7 +2562,7 @@
 									"formdata": [
 										{
 											"key": "name",
-											"value": "happy new year",
+											"value": "lebaran",
 											"type": "text"
 										},
 										{
@@ -2568,12 +2577,12 @@
 										},
 										{
 											"key": "category",
-											"value": "healing",
+											"value": "jalan jalan",
 											"type": "text"
 										},
 										{
 											"key": "date",
-											"value": "2023-12-31",
+											"value": "2023-12-12",
 											"type": "text"
 										},
 										{
@@ -2583,7 +2592,7 @@
 										},
 										{
 											"key": "detail",
-											"value": "happy new year 2024",
+											"value": "natal yuhuuu",
 											"type": "text"
 										}
 									]
@@ -2694,14 +2703,6 @@
 								}
 							},
 							"response": []
-						},
-						{
-							"name": "GET DETAIL HISTORY",
-							"request": {
-								"method": "GET",
-								"header": []
-							},
-							"response": []
 						}
 					]
 				},
@@ -2735,7 +2736,7 @@
 									"urlencoded": [
 										{
 											"key": "eventId",
-											"value": "1",
+											"value": "4",
 											"type": "text"
 										}
 									]
@@ -2791,7 +2792,7 @@
 									"urlencoded": [
 										{
 											"key": "oldPassword",
-											"value": "12345",
+											"value": "D@us35444",
 											"type": "text"
 										},
 										{
@@ -2867,6 +2868,23 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GET ALL PAYMENT METHOD",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/payment",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"payment"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -2905,6 +2923,28 @@
 									],
 									"path": [
 										"reservations"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "SECTIONS",
+					"item": [
+						{
+							"name": "GET ALL SECTIONS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/sections",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"sections"
 									]
 								}
 							},

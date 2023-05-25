@@ -75,15 +75,6 @@ exports.findOneName = async function (id) {
     return rows[0]
 }
 
-exports.findOneId = async function (id) {
-    const query = `
-    SELECT "id" FROM "events" WHERE id=$1
-    `
-    const values = [id]
-    const {rows} = await db.query(query, values)
-    return rows[0]
-}
-
 exports.findOneByCreatedBy = async function (createdBy) {
     const query = `
     SELECT "id" FROM "events" WHERE "createdBy"=$1
@@ -167,11 +158,12 @@ exports.update = async function (id, data) {
       "title"=COALESCE(NULLIF($3, ''), "title"), 
       "date"=COALESCE(NULLIF($4::DATE, NULL), "date"), 
       "cityId"=COALESCE(NULLIF($5::INTEGER, NULL), "cityId"), 
-      "descriptions"=COALESCE(NULLIF($6, ''), "descriptions")
+      "createdBy"=COALESCE(NULLIF($6::INTEGER, NULL), "createdBy"), 
+      "descriptions"=COALESCE(NULLIF($7, ''), "descriptions")
     WHERE "id"=$1
     RETURNING *
   `
-    const values = [id, data.picture, data.title, data.date, data.cityId, data.descriptions]
+    const values = [id, data.picture, data.title, data.date, data.cityId, data.createdBy, data.descriptions]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
