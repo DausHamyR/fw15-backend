@@ -1,3 +1,4 @@
+const moment = require("moment")
 const errorHandler = require("../../helpers/errorHandler.helper")
 // const fileRemover = require("../../helpers/fileRemover.helper")
 const profileModel = require("../../models/profile.model")
@@ -44,7 +45,7 @@ exports.updateProfile = async (request, response) => {
             gender: profile.gender,
             profession: profile.profession,
             nationality: profile.nationality,
-            birthDate: profile.birthDate
+            birthDate: moment(profile.birthDate).format("DD/MM/YYYY")
         }
         return response.json({
             success: true,

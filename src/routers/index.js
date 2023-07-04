@@ -20,7 +20,7 @@ router.use("/wishlists", authMiddleware, require("./MAIN BUSINESS FLOW/wishlists
 router.use("/changePassword", authMiddleware, require("./MAIN BUSINESS FLOW/changePassword.router"))
 router.use("/reservations", authMiddleware, require("./MAIN BUSINESS FLOW/reservations.router"))
 router.use("/payment", authMiddleware, require("./MAIN BUSINESS FLOW/payment.router"))
-// router.use("/sections", authMiddleware, require("./MAIN BUSINESS FLOW/section.router"))
+router.use("/sections", authMiddleware, require("./MAIN BUSINESS FLOW/section.router"))
 
 router.use("*", (request, response) => {
     return response.status(404).json({
