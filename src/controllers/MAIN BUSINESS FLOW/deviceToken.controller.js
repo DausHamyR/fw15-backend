@@ -5,13 +5,21 @@ exports.saveToken = async(req, res) => {
     try{
         const {id} = req.user
         const {token} = req.body
-        const savedData = await deviceTokenModel.insertToken(id, {token})
+        let cekToken = await deviceTokenModel.findOne(id)
+        if(!cekToken){
+            const savedData = await deviceTokenModel.insertToken(id, {token})
+            cekToken = savedData
+            return res.json({
+                success: true,
+                message: "Token saved",
+                results: {
+                    token: cekToken.token
+                }
+            })
+        }
         return res.json({
-            success: true,
-            message: "Token saved",
-            results: {
-                token: savedData.token
-            }
+            success: false,
+            message: "Tokens already exist"
         })
     }catch(err){
         return errorHandler(res, err)

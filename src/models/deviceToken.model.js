@@ -18,6 +18,15 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
+exports.findOne = async function (id) {
+    const query = `
+  SELECT * FROM "deviceToken" WHERE "userId"::TEXT=$1
+  `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.insertToken = async function (id, data) {
     const query = `
   INSERT INTO "deviceToken" ("token", "userId")
