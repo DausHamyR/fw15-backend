@@ -36,7 +36,7 @@ SELECT "r"."id", "e"."title", "ci"."name" as location, "e"."date"
 FROM "reservations" "r"
 JOIN "events" "e" ON "e"."id" = "r"."eventId"
 JOIN "cities" "ci" ON "ci"."id" = "e"."cityId"
-WHERE "r"."userId" = $5   
+WHERE "r"."userId"::TEXT = $5   
 AND "e"."title" LIKE $3
 AND "ci"."name" LIKE $4
 ORDER BY ${params.sort} ${params.sortBy} 

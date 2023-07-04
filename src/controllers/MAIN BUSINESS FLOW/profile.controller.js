@@ -3,6 +3,8 @@ const errorHandler = require("../../helpers/errorHandler.helper")
 // const fileRemover = require("../../helpers/fileRemover.helper")
 const profileModel = require("../../models/profile.model")
 const userModel = require("../../models/users.model")
+const deviceTokenModel = require("../../models/deviceToken.model")
+const admin = require("../../helpers/firebase")
 
 exports.updateProfile = async (request, response) => {
     try {
@@ -64,6 +66,10 @@ exports.getProfile = async (request, response) => {
         if(!profile) {
             throw Error("unauthorized")
         }
+        const listToken = await deviceTokenModel.findAll(1, 1000)
+        const message = listToken.map(item => ({token: item.token, notification:{title: "ini title", body: "ini body"}}))
+        const messaging = admin.messaging()
+        messaging.sendEach(message)
         return response.json({
             success: true,
             message: "Profile",

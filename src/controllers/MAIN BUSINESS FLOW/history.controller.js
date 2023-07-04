@@ -3,8 +3,8 @@ const reservationModel = require("../../models/reservations.model")
 
 exports.getAllHistory = async (request, response) => {
     try {
-        const {id: userId} = request.user
-        const histories = await reservationModel.findAllByUserId(userId, request.query)
+        const {id} = request.user
+        const histories = await reservationModel.findAllByUserId({userId:id}, request.query)
         
         return response.json({
             success: true,
