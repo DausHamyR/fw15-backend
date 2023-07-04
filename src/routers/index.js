@@ -21,6 +21,7 @@ router.use("/changePassword", authMiddleware, require("./MAIN BUSINESS FLOW/chan
 router.use("/reservations", authMiddleware, require("./MAIN BUSINESS FLOW/reservations.router"))
 router.use("/payment", authMiddleware, require("./MAIN BUSINESS FLOW/payment.router"))
 router.use("/sections", authMiddleware, require("./MAIN BUSINESS FLOW/section.router"))
+router.use("/device-token", authMiddleware, require("./MAIN BUSINESS FLOW/deviceToken.router"))
 
 router.use("*", (request, response) => {
     return response.status(404).json({
