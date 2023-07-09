@@ -70,11 +70,11 @@ exports.getProfile = async (request, response) => {
         const message = listToken.map(item => ({token: item.token, notification:{title: "ini title", body: "ini body"}}))
         const messaging = admin.messaging()
         messaging.sendEach(message)
-        if(profile.birthDate){
-            profile = {
-                ...profile,
-                birthDate: moment(profile.birthDate, "YYYY-MM-DDTHH:mm:ssZ").format("DD-MM-YYYY")}
-        }
+        // if(profile.birthDate){
+        //     profile = {
+        //         ...profile,
+        //         birthDate: moment(profile.birthDate, "YYYY-MM-DDTHH:mm:ssZ").format("DD-MM-YYYY")}
+        // }
         return response.json({
             success: true,
             message: "Profile",
