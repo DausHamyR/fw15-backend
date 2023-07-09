@@ -73,7 +73,7 @@ exports.getProfile = async (request, response) => {
         if(profile.birthDate){
             profile = {
                 ...profile,
-                birthDate: moment(profile.birthDate).toISOString().format("DD-MM-YYYY")}
+                birthDate: moment(profile.birthDate, "YYYY-MM-DDTHH:mm:ssZ").format("DD-MM-YYYY")}
         }
         return response.json({
             success: true,
