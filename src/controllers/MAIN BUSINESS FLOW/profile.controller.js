@@ -71,7 +71,9 @@ exports.getProfile = async (request, response) => {
         const messaging = admin.messaging()
         messaging.sendEach(message)
         if(profile.birthDate){
-            profile = moment(profile.birthDate).format("DD-MM-YYYY")
+            profile = {
+                ...profile,
+                birthDate: moment(profile.birthDate).format("DD-MM-YYYY")}
         }
         return response.json({
             success: true,
