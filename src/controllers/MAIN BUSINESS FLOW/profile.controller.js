@@ -62,7 +62,7 @@ exports.updateProfile = async (request, response) => {
 exports.getProfile = async (request, response) => {
     try {
         const {id} = request.user
-        const profile = await profileModel.findOneByUserId(id)
+        let profile = await profileModel.findOneByUserId(id)
         if(!profile) {
             throw Error("unauthorized")
         }
@@ -70,7 +70,9 @@ exports.getProfile = async (request, response) => {
         const message = listToken.map(item => ({token: item.token, notification:{title: "ini title", body: "ini body"}}))
         const messaging = admin.messaging()
         messaging.sendEach(message)
-        console.log(profile)
+        if(profile.birthDate){
+            profile = moment(profile.birthDate).format("DD-MM-YYYY")
+        }
         return response.json({
             success: true,
             message: "Profile",
