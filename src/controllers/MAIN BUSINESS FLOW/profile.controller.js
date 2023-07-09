@@ -70,6 +70,7 @@ exports.getProfile = async (request, response) => {
         const message = listToken.map(item => ({token: item.token, notification:{title: "ini title", body: "ini body"}}))
         const messaging = admin.messaging()
         messaging.sendEach(message)
+        console.log(profile)
         return response.json({
             success: true,
             message: "Profile",
