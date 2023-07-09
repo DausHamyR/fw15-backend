@@ -92,7 +92,7 @@ exports.updateByUserId = async function (userId, data) {
     "gender"=COALESCE(NULLIF($5::BOOLEAN, NULL), "gender"), 
     "profession"=COALESCE(NULLIF($6, ''), "profession"), 
     "nationality"=COALESCE(NULLIF($7, ''), "nationality"), 
-    "birthDate"=COALESCE(NULLIF($8::DATE, 'NOW'), "birthDate")
+    "birthDate"=COALESCE(NULLIF($8::DATE, NULL), "birthDate")
     WHERE "userId"=$1
     RETURNING *
   `
