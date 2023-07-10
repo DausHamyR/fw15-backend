@@ -120,7 +120,7 @@ exports.createInsertEvent = async (request, response) => {
         updateEvent
         insertEventCategory
         const listToken = await deviceTokenModel.findAll(1, 1000)
-        const message = listToken.map(item => ({token: item.token, notification:{title: "ini title", body: "ini body"}}))
+        const message = listToken.map(item => ({token: item.token, notification:{title: `there is a new event ${name}, let's register immediately`, body: "new event join and enliven"}}))
         const messaging = admin.messaging()
         messaging.sendEach(message)
         return response.json({
