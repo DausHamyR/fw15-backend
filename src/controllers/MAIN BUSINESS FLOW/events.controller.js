@@ -94,7 +94,8 @@ exports.createInsertEvent = async (request, response) => {
         const {id} = request.user
         let {name, location, price, category, date, picture, detail} = request.body
         if(request.file) {
-            picture = request.file.filename
+            // picture = request.file.filename
+            picture = request.file.path
         }
         const cities = {location, picture}
         const sections = {price}
@@ -118,7 +119,7 @@ exports.createInsertEvent = async (request, response) => {
         insertEventCategory
         return response.json({
             success: true,
-            message: `Create wishlists ${name} successfully`,
+            message: `Create Events ${name} successfully`,
             result
         })
     }catch(err) {
