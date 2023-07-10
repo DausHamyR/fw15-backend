@@ -17,6 +17,8 @@ exports.updateProfile = async (request, response) => {
             throw Error("unauthorized")
         }
         if(request.file) {
+            console.log(request.file)
+            console.log(user.picture)
             if(user.picture) {
                 // fileRemover({filename: user.picture})
             }
