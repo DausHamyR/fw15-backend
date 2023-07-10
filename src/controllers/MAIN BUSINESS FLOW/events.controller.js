@@ -4,6 +4,8 @@ const citiesModel = require("../../models/cities.model")
 const eventCategoriesModel = require("../../models/eventCategories.model")
 const sectionsModel = require("../../models/reservationSections.model")
 const categoriesModel = require("../../models/categories.model")
+const deviceTokenModel = require("../../models/deviceToken.model")
+const admin = require("../../helpers/firebase")
 // const fileRemover = require("../../helpers/fileRemover.helper")
 
 exports.getEvents = async (request, response) => {
@@ -117,6 +119,10 @@ exports.createInsertEvent = async (request, response) => {
         }
         updateEvent
         insertEventCategory
+        const listToken = await deviceTokenModel.findAll(1, 1000)
+        const message = listToken.map(item => ({token: item.token, notification:{title: "ini title", body: "ini body"}}))
+        const messaging = admin.messaging()
+        messaging.sendEach(message)
         return response.json({
             success: true,
             message: `Create Events ${name} successfully`,
