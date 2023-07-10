@@ -4,7 +4,7 @@ const citiesModel = require("../../models/cities.model")
 const eventCategoriesModel = require("../../models/eventCategories.model")
 const sectionsModel = require("../../models/reservationSections.model")
 const categoriesModel = require("../../models/categories.model")
-const fileRemover = require("../../helpers/fileRemover.helper")
+// const fileRemover = require("../../helpers/fileRemover.helper")
 
 exports.getEvents = async (request, response) => {
     try {
@@ -45,9 +45,10 @@ exports.updateEvent = async (request, response) => {
         }
         if(request.file) {
             if(user.picture) {
-                fileRemover({filename: user.picture})
+                // fileRemover({filename: user.picture})
             }
-            data.picture = request.file.filename
+            data.picture = request.file.path
+            // data.picture = request.file.filename
         }
         const updateEvent = await eventsModel.updateEvent(id, data)
         if(!updateEvent) {
