@@ -14,7 +14,7 @@ router.use("/profile", authMiddleware, require("./MAIN BUSINESS FLOW/profile.rou
 router.use("/city", require("./MAIN BUSINESS FLOW/cities.router"))
 router.use("/categories", require("./MAIN BUSINESS FLOW/categories.router"))
 router.use("/partners", require("./MAIN BUSINESS FLOW/partners.router"))
-router.use("/events", require("./MAIN BUSINESS FLOW/events.router"))
+router.use("/events", authMiddleware, require("./MAIN BUSINESS FLOW/events.router"))
 router.use("/history", authMiddleware, require("./MAIN BUSINESS FLOW/history.router"))
 router.use("/wishlists", authMiddleware, require("./MAIN BUSINESS FLOW/wishlists.router"))
 router.use("/changePassword", authMiddleware, require("./MAIN BUSINESS FLOW/changePassword.router"))
