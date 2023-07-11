@@ -69,10 +69,6 @@ exports.getProfile = async (request, response) => {
         if(!profile) {
             throw Error("unauthorized")
         }
-        const listToken = await deviceTokenModel.findAll(1, 1000)
-        const message = listToken.map(item => ({token: item.token, notification:{title: "ini title", body: "ini body"}}))
-        const messaging = admin.messaging()
-        messaging.sendEach(message)
         // if(profile.birthDate){
         //     profile = {
         //         ...profile,
