@@ -76,7 +76,7 @@ exports.getProfile = async (request, response) => {
         // }
         return response.json({
             success: true,
-            message: "Profile",
+            message: "Profilee",
             results: profile
         })
     }catch(err) {
