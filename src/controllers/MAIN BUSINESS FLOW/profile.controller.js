@@ -49,7 +49,8 @@ exports.updateProfile = async (request, response) => {
             gender: profile.gender,
             profession: profile.profession,
             nationality: profile.nationality,
-            birthDate: moment(profile.birthDate, "YYYY-MM-DD").format("DD/MM/YYYY")
+            birthDate: profile.birthDate
+            // birthDate: moment(profile.birthDate, "YYYY-MM-DD").format("DD/MM/YYYY")
         }
         return response.json({
             success: true,
