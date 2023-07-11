@@ -40,13 +40,13 @@ exports.getOneEvents = async (request, response) => {
 
 exports.updateEvent = async (request, response) => {
     try {
-        const {id} = request.user
-        const user = await eventsModel.findOneEvent(id)
+        const {id} = request.query
+        // const user = await eventsModel.findOneEvent(id)
         const data = {
             ...request.body
         }
         if(request.file) {
-            if(user.picture) {
+            if(data.picture) {
                 // fileRemover({filename: user.picture})
             }
             data.picture = request.file.path
