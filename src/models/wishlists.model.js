@@ -60,7 +60,16 @@ exports.findOne = async function (id) {
     return rows[0]
 }
 
-exports.findOneById = async function (id) {
+exports.findOneDelete = async function (id, eventId) {
+    const query = `
+    SELECT * FROM "wishlists" WHERE "userId"=$1 AND "eventId"=$2
+    `
+    const values = [id, eventId]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
+exports.findOneById = async function (eventId, id) {
     const query = `
     SELECT
     "e"."title",
@@ -71,10 +80,10 @@ exports.findOneById = async function (id) {
     FROM "wishlists" "w"
     JOIN "events" "e" ON "e"."id" = "w"."eventId"
     JOIN "users" "u" ON "u"."id" = "w"."userId"
-    JOIN "cities" "c" ON "c"."id" = "w"."userId"
-    WHERE "w".id=$1
+    JOIN "cities" "c" ON "c"."id" = "e"."cityId"
+    WHERE "w"."eventId"=$1 AND "w"."userId"=$2
     `
-    const values = [id]
+    const values = [eventId, id]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
@@ -135,11 +144,11 @@ exports.update = async function (id, data) {
     return rows[0]
 }
 
-exports.destroy = async function (id) {
+exports.destroy = async function (id, eventId) {
     const query = `
-    DELETE FROM "wishlists" WHERE "id"=$1 RETURNING *
+    DELETE FROM "wishlists" WHERE "userId"=$1 AND "eventId"=$2 RETURNING *
   `
-    const values = [id]
+    const values = [id, eventId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

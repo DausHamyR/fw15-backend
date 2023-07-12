@@ -22,13 +22,14 @@ exports.createInsertReservations = async (request, response) => {
             throw Error("section_not_found")
         }
         const total = section.price * quantity
-        const result = {
+        const results = {
+            reservationId: insertTickets.id,
             ticketSection: section.name,
             quantity: insertTickets.quantity,
             totalPayment: `$${total}`
         }
 
-        if(!result) {
+        if(!results) {
             throw Error("reservations_not_found")
         }else {
             insertReservations
@@ -36,7 +37,7 @@ exports.createInsertReservations = async (request, response) => {
             return response.json({
                 success: true,
                 message: "Create reservations successfully",
-                results: result
+                results
             })
         }
     }catch(err) {
