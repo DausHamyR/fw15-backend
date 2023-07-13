@@ -14,3 +14,17 @@ exports.getAllHistory = async (request, response) => {
         return errorHandler(response, err)
     }
 }
+
+exports.getDetailHistory = async (request, response) => {
+    try {
+        const {id} = request.params
+        const histories = await reservationModel.findDetailHistory(id)
+        return response.json({
+            success: true,
+            message: "history",
+            results: histories
+        })
+    }catch(err) {
+        return errorHandler(response, err)
+    }
+}

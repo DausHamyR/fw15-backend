@@ -95,6 +95,27 @@ exports.findAllHistory = async function (id) {
     return rows
 }
 
+exports.findDetailHistory = async function (id) {
+    const query = `
+    SELECT 
+    "reservations"."id",
+    "events"."title",
+    "events"."date",
+    "reservationStatus"."name",
+    "paymentMethod"."name" as "namePayment",
+    "reservations"."createdAt",
+    "reservations"."updatedAt"
+    FROM "reservations"
+    JOIN "events" ON "events"."id" = "reservations"."eventId"
+    JOIN "reservationStatus" ON "reservationStatus"."id" = "reservations"."statusId"
+    JOIN "paymentMethod" ON "paymentMethod"."id" = "reservations"."paymentMethodId"
+    WHERE "reservations"."id"=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "reservations" WHERE id=$1
