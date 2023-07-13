@@ -74,6 +74,15 @@ LIMIT $1 OFFSET $2
 //     return rows
 // }
 
+exports.findAllHistory = async function (id) {
+    const query = `
+    SELECT * FROM "reservations" WHERE "userId"=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "reservations" WHERE id=$1

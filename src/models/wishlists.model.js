@@ -32,7 +32,7 @@ exports.findAllWishlists = async function (page, limit, search, sort, sortBy) {
 
     const query = `
 SELECT
-"w"."eventId",
+"w"."eventId" "id",
 "e"."title",
 "c"."name",
 "e"."date",

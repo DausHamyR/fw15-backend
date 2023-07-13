@@ -57,6 +57,15 @@ exports.findAllEvent = async function (params) {
     return rows
 }
 
+exports.findAllEvent = async function (id) {
+    const query = `
+    SELECT * FROM "events" WHERE id=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "events" WHERE id=$1
