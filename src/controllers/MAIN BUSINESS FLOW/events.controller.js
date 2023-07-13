@@ -8,6 +8,35 @@ const deviceTokenModel = require("../../models/deviceToken.model")
 const admin = require("../../helpers/firebase")
 // const fileRemover = require("../../helpers/fileRemover.helper")
 
+exports.getAllEventsManage = async (request, response) => {
+    try {
+        const {id} = request.user
+        const events = await eventsModel.findAllEventManage(id)
+        return response.json({
+            success: true,
+            message: "events",
+            results: events
+        })
+    }catch(err) {
+        return errorHandler(response, err)
+    }
+}
+
+exports.getDetailEventsManage = async (request, response) => {
+    try {
+        const {id} = request.user
+        const userId = request.params.id
+        const events = await eventsModel.findOneEventManage(id, userId)
+        return response.json({
+            success: true,
+            message: "events",
+            results: events
+        })
+    }catch(err) {
+        return errorHandler(response, err)
+    }
+}
+
 exports.getEvents = async (request, response) => {
     try {
         const events = await eventsModel.findAllEvent(request.query)

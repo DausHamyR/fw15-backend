@@ -66,6 +66,40 @@ exports.findAllEventId = async function (id) {
     return rows
 }
 
+exports.findAllEventManage = async function (id) {
+    const query = `
+    SELECT 
+    "e"."id",
+    "e"."title",
+    "e"."date",
+    "c"."name",
+    "e"."descriptions"
+    FROM "events" as "e"
+    JOIN "cities" "c" ON "c"."id" = "e"."cityId"
+    WHERE "e"."createdBy"=$1
+    `
+    const values = [id]
+    const {rows} = await db.query(query, values)
+    return rows
+}
+
+exports.findOneEventManage = async function (id, userId) {
+    const query = `
+    SELECT  
+    "e"."id",
+    "e"."title",
+    "e"."date",
+    "c"."name",
+    "e"."descriptions"
+    FROM "events" as "e"
+    JOIN "cities" "c" ON "c"."id" = "e"."cityId"
+    WHERE "e"."id"=$2 AND "e"."createdBy"=$1
+    `
+    const values = [id, userId]
+    const {rows} = await db.query(query, values)
+    return rows[0]
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "events" WHERE id=$1

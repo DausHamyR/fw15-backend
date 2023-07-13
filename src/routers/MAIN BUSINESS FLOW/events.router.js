@@ -3,9 +3,11 @@ const eventsController = require("../../controllers/MAIN BUSINESS FLOW/events.co
 const uploadMiddleware = require("../../middlewares/upload.middleware")
 // const validate = require("../../middlewares/validator.middleware")
 
-eventsRouter.get("/", eventsController.getEvents)
-eventsRouter.get("/:id", eventsController.getOneEvents)
+eventsRouter.get("/manage", eventsController.getAllEventsManage)
+eventsRouter.get("/manage/:id", eventsController.getDetailEventsManage)
 eventsRouter.post("/manage", uploadMiddleware("picture"), eventsController.createInsertEvent)
 eventsRouter.patch("/manage", uploadMiddleware("picture"), eventsController.updateEvent)
+eventsRouter.get("/", eventsController.getEvents)
+eventsRouter.get("/:id", eventsController.getOneEvents)
 
 module.exports = eventsRouter
