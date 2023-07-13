@@ -114,15 +114,33 @@ exports.findOneEvent = async function (id) {
     return rows[0]
 }
 
-exports.insert = async function (data) {
+exports.insert = async function (data, userId) {
     const query = `
-    INSERT INTO "events" ("picture", "title", "date", "cityId", "descriptions")
-    VALUES ($1, $2, $3, $4, $5) RETURNING *
+    INSERT INTO "events" ("picture", "title", "date", "cityId", "descriptions", "createdBy")
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *
     `
-    const values = [data.picture, data.title, data.date, data.cityId, data.descriptions]
-    const {rows} = await db.query(query, values)
-    return rows[0]
+    const queryEventCategories = `
+    INSERT INTO "eventCategories" ("categoryId")
+    VALUES ($1) RETURNING *`
+    const valuesEventCategories = [data.category]
+    const values = [data.picture, data.name, data.date, data.location, data.detail, userId]
+    let eventResult, eventCategoryResult
+    const eventRes = await db.query(query, values)
+    eventResult = eventRes.rows[0]
+    const eventCategoriesRes = await db.query(queryEventCategories, valuesEventCategories)
+    eventCategoryResult = eventCategoriesRes.rows[0]
+    return {event: eventResult, eventCategories: eventCategoryResult}
 }
+
+// exports.insert = async function (data) {
+//     const query = `
+//     INSERT INTO "events" ("picture", "title", "date", "cityId", "descriptions")
+//     VALUES ($1, $2, $3, $4, $5) RETURNING *
+//     `
+//     const values = [data.picture, data.title, data.date, data.cityId, data.descriptions]
+//     const {rows} = await db.query(query, values)
+//     return rows[0]
+// }
 
 exports.insertEvent = async function (event, cities, sections, categories) {
     const queryEvent = `

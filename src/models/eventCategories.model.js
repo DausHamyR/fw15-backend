@@ -57,7 +57,7 @@ exports.insertCategories = async function (findEventId, findCategories) {
     return rows[0]
 }
 
-exports.update = async function (id, data) {
+exports.update = async function (id, eventId, categoryId) {
     const query = `
     UPDATE "eventCategories"
     SET 
@@ -66,7 +66,7 @@ exports.update = async function (id, data) {
     WHERE "id"=$1
     RETURNING *
   `
-    const values = [id, data.eventId, data.categoryId]
+    const values = [id, eventId, categoryId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

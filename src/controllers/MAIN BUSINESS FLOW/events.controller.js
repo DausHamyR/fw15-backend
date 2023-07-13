@@ -106,42 +106,73 @@ exports.updateEvent = async (request, response) => {
 
 exports.createInsertEvent = async (request, response) => {
     try {
+        console.log("6")
         const {id} = request.user
-        let {name, location, price, category, date, picture, detail} = request.body
+        const data = {
+            ...request.body
+        }
+        console.log("7")
         if(request.file) {
-            // picture = request.file.filename
-            picture = request.file.path
+            data.picture = request.file.path
         }
-        const cities = {location, picture}
-        const sections = {price}
-        const categories = {category}
-        const createEvent = await eventsModel.insertEvent({name, detail, date, picture, id}, cities, sections, categories)
-        const updateEvent = await eventsModel.update(createEvent.event.id, { cityId: createEvent.cities.id })
-        const findEventId = await eventsModel.findOneByCreatedBy(createEvent.event.createdBy)
-        const findCategoriesId = await categoriesModel.findOne(createEvent.categories.id)
-        const insertEventCategory = await eventCategoriesModel.insertCategories(findEventId.id, findCategoriesId.id)
-
-        const result = {
-            name: createEvent.event.title,
-            location: createEvent.cities.name,
-            price: createEvent.sections.price,
-            category: createEvent.categories.name,
-            date: createEvent.event.date,
-            picture: createEvent.event.picture,
-            detail: createEvent.event.descriptions
-        }
-        updateEvent
-        insertEventCategory
-        const listToken = await deviceTokenModel.findAll(1, 1000)
-        const message = listToken.map(item => ({token: item.token, notification:{title: `there is a new event ${name}, let's register immediately`, body: "new event join and enliven"}}))
-        const messaging = admin.messaging()
-        messaging.sendEach(message)
+        console.log("8")
+        const createEvent = await eventsModel.insert(data, id)
+        console.log("1")
+        const idEvent = createEvent.event.id
+        console.log("2")
+        const idEventCategories = createEvent.eventCategories.id
+        console.log("3")
+        const createEventCategories = await eventCategoriesModel.update(idEventCategories, idEvent)
+        console.log("4")
+        const results = [createEvent.event, createEventCategories]
+        console.log("5")
         return response.json({
             success: true,
-            message: `Create Events ${name} successfully`,
-            result
+            message: `Create Events ${data.name} successfully`,
+            results
         })
     }catch(err) {
         errorHandler(response, err)
     }
 }
+// exports.createInsertEvent = async (request, response) => {
+//     try {
+//         const {id} = request.user
+//         let {name, location, price, category, date, picture, detail} = request.body
+//         if(request.file) {
+//             // picture = request.file.filename
+//             picture = request.file.path
+//         }
+//         const cities = {location, picture}
+//         const sections = {price}
+//         const categories = {category}
+//         const createEvent = await eventsModel.insertEvent({name, detail, date, picture, id}, cities, sections, categories)
+//         const updateEvent = await eventsModel.update(createEvent.event.id, { cityId: createEvent.cities.id })
+//         const findEventId = await eventsModel.findOneByCreatedBy(createEvent.event.createdBy)
+//         const findCategoriesId = await categoriesModel.findOne(createEvent.categories.id)
+//         const insertEventCategory = await eventCategoriesModel.insertCategories(findEventId.id, findCategoriesId.id)
+
+//         const result = {
+//             name: createEvent.event.title,
+//             location: createEvent.cities.name,
+//             price: createEvent.sections.price,
+//             category: createEvent.categories.name,
+//             date: createEvent.event.date,
+//             picture: createEvent.event.picture,
+//             detail: createEvent.event.descriptions
+//         }
+//         updateEvent
+//         insertEventCategory
+//         const listToken = await deviceTokenModel.findAll(1, 1000)
+//         const message = listToken.map(item => ({token: item.token, notification:{title: `there is a new event ${name}, let's register immediately`, body: "new event join and enliven"}}))
+//         const messaging = admin.messaging()
+//         messaging.sendEach(message)
+//         return response.json({
+//             success: true,
+//             message: `Create Events ${name} successfully`,
+//             result
+//         })
+//     }catch(err) {
+//         errorHandler(response, err)
+//     }
+// }
