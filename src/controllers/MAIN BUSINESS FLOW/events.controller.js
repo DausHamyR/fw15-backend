@@ -106,26 +106,22 @@ exports.updateEvent = async (request, response) => {
 
 exports.createInsertEvent = async (request, response) => {
     try {
-        console.log("6")
         const {id} = request.user
         const data = {
             ...request.body
         }
-        console.log("7")
         if(request.file) {
             data.picture = request.file.path
         }
-        console.log("8")
         const createEvent = await eventsModel.insert(data, id)
-        console.log("1")
         const idEvent = createEvent.event.id
-        console.log("2")
         const idEventCategories = createEvent.eventCategories.id
-        console.log("3")
         const createEventCategories = await eventCategoriesModel.update(idEventCategories, idEvent)
-        console.log("4")
         const results = [createEvent.event, createEventCategories]
-        console.log("5")
+        const listToken = await deviceTokenModel.findAll(1, 1000)
+        const message = listToken.map(item => ({token: item.token, notification:{title: `there is a new event ${data.name}, let's register immediately`, body: "new event join and enliven"}}))
+        const messaging = admin.messaging()
+        messaging.sendEach(message)
         return response.json({
             success: true,
             message: `Create Events ${data.name} successfully`,
