@@ -21,6 +21,19 @@ exports.getEvents = async (request, response) => {
     }
 }
 
+// exports.getEvents = async (request, response) => {
+//     try {
+//         const events = await eventsModel.findAllEvent(request.query)
+//         return response.json({
+//             success: true,
+//             message: "events",
+//             results: events
+//         })
+//     }catch(err) {
+//         return errorHandler(response, err)
+//     }
+// }
+
 exports.getOneEvents = async (request, response) => {
     try {
         const {id} = request.params

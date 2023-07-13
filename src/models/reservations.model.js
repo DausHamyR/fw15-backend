@@ -76,7 +76,19 @@ LIMIT $1 OFFSET $2
 
 exports.findAllHistory = async function (id) {
     const query = `
-    SELECT * FROM "reservations" WHERE "userId"=$1
+    SELECT 
+    "reservations"."id",
+    "events"."title",
+    "events"."date",
+    "reservationStatus"."name",
+    "paymentMethod"."name" as "namePayment",
+    "reservations"."createdAt",
+    "reservations"."updatedAt"
+    FROM "reservations"
+    JOIN "events" ON "events"."id" = "reservations"."eventId"
+    JOIN "reservationStatus" ON "reservationStatus"."id" = "reservations"."statusId"
+    JOIN "paymentMethod" ON "paymentMethod"."id" = "reservations"."paymentMethodId"
+    WHERE "reservations"."userId"=$1
     `
     const values = [id]
     const {rows} = await db.query(query, values)
