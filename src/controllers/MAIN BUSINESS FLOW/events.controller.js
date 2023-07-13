@@ -201,3 +201,20 @@ exports.createInsertEvent = async (request, response) => {
 //         errorHandler(response, err)
 //     }
 // }
+
+exports.deleteManageEvent = async (request, response) => {
+    try {
+        const {id} = request.user
+        const eventId = request.params.id
+        const data = await eventsModel.destroy(id, eventId)
+        if(data) {
+            return response.json({
+                success: true,
+                message: "Delete Event successfully",
+                result: data
+            })
+        }
+    }catch(err) {
+        errorHandler(response, err)
+    }
+}

@@ -7,6 +7,7 @@ eventsRouter.get("/manage", eventsController.getAllEventsManage)
 eventsRouter.get("/manage/:id", eventsController.getDetailEventsManage)
 eventsRouter.post("/manage", uploadMiddleware("picture"), eventsController.createInsertEvent)
 eventsRouter.patch("/manage", uploadMiddleware("picture"), eventsController.updateEvent)
+eventsRouter.delete("/manage/:id", eventsController.deleteManageEvent)
 eventsRouter.get("/", eventsController.getEvents)
 eventsRouter.get("/:id", eventsController.getOneEvents)
 
