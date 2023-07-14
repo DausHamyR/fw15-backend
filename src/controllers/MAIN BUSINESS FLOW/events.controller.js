@@ -204,15 +204,15 @@ exports.createInsertEvent = async (request, response) => {
 
 exports.deleteManageEvent = async (request, response) => {
     try {
-        const {id} = request.params
-        const data = await eventsModel.destroy(id)
-        if(data) {
-            return response.json({
-                success: true,
-                message: "Delete Event successfully",
-                result: data
-            })
-        }
+        const eventId = request.params.id
+        const data = await eventsModel.destroy(eventId)
+        const dataCategories = await eventCategoriesModel.destroy(data.id)
+        const results = [data, dataCategories]
+        return response.json({
+            success: true,
+            message: "Delete Event successfully",
+            results
+        })
     }catch(err) {
         errorHandler(response, err)
     }

@@ -43,10 +43,7 @@ exports.deletewishlists = async (request, response) => {
     try {
         const {id} = request.user
         const eventId = request.params.id
-        console.log(id)
-        console.log(eventId)
         const cekWishlist = await wishlistsModel.findOneDelete(id, eventId)
-        console.log(cekWishlist)
         if(!cekWishlist){
             throw Error("wishlist_not_found")
         }

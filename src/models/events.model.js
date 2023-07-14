@@ -245,11 +245,12 @@ exports.updateEvent = async function (cityId, data) {
     return rows[0]
 }
 
-exports.destroy = async function (id) {
+exports.destroy = async function (eventId) {
     const query = `
-  DELETE FROM "events" WHERE "id"=$1 RETURNING *
+    DELETE FROM events WHERE "id"=$1
+    RETURNING *;
 `
-    const values = [id]
+    const values = [eventId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
