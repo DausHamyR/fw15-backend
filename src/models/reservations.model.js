@@ -116,6 +116,14 @@ exports.findDetailHistory = async function (id) {
     return rows[0]
 }
 
+exports.findAllReservations = async function () {
+    const query = `
+    SELECT * FROM "reservations"
+    `
+    const {rows} = await db.query(query)
+    return rows[0]
+}
+
 exports.findOne = async function (id) {
     const query = `
     SELECT * FROM "reservations" WHERE id=$1

@@ -45,6 +45,22 @@ exports.createInsertReservations = async (request, response) => {
     }
 }
 
+exports.getReservation = async (request, response) => {
+    try {
+        const reservations = await reservationsModel.findAllReservations()
+        if(!reservations) {
+            throw Error("reservations_not_found")
+        }
+        return response.json({
+            success: true,
+            message: "reservations",
+            results: reservations
+        })
+    }catch(err) {
+        return errorHandler(response, err)
+    }
+}
+
 // exports.createInsertReservations = async (request, response) => {
 //     try {
 //         const {eventId, sectionId, quantity} = request.body
