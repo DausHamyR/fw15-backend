@@ -245,11 +245,11 @@ exports.updateEvent = async function (cityId, data) {
     return rows[0]
 }
 
-exports.destroy = async function (createdBy, eventId) {
+exports.destroy = async function (id) {
     const query = `
-  DELETE FROM "events" WHERE "createdBy"=$1 AND "id"=$2 RETURNING *
+  DELETE FROM "events" WHERE "id"=$1 RETURNING *
 `
-    const values = [createdBy, eventId]
+    const values = [id]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
