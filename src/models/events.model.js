@@ -241,7 +241,7 @@ exports.updateEvent = async function (id, idParams, data) {
     WHERE "createdBy"=$1 AND "id"=$2
     RETURNING *
   `
-    const values = [id, idParams, data.title, data.descriptions, data.date, data.picture, data.cityId]
+    const values = [id, idParams, data.name, data.detail, data.date, data.picture, data.location]
     const {rows} = await db.query(query, values)
     return rows[0]
 }

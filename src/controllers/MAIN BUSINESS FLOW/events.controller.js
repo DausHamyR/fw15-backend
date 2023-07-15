@@ -74,9 +74,11 @@ exports.updateEvent = async (request, response) => {
         const data = {
             ...request.body
         }
+        if(request.file) {
+            data.picture = request.file.path
+        }
         const updateEvent = await eventsModel.updateEvent(id, idParams, data)
         const updateCategories = await eventCategoriesModel.update(updateEvent.id, data.category)
-        console.log(updateCategories)
         const results = [updateEvent, updateCategories]
         return response.json({
             success: true,
