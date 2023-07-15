@@ -229,18 +229,19 @@ exports.update = async function (id, data) {
     return rows[0]
 }
 
-exports.updateEvent = async function (cityId, data) {
+exports.updateEvent = async function (id, idParams, data) {
     const query = `
     UPDATE "events"
     SET
-      "title"=COALESCE(NULLIF($2, ''), "title"),
-      "descriptions"=COALESCE(NULLIF($3, ''), "descriptions"),
-      "date"=COALESCE(NULLIF($4::DATE, NULL), "date"),
-      "picture"=COALESCE(NULLIF($5, NULL), "picture")
-    WHERE "cityId"=$1
+      "title"=COALESCE(NULLIF($3, ''), "title"),
+      "descriptions"=COALESCE(NULLIF($4, ''), "descriptions"),
+      "date"=COALESCE(NULLIF($5::DATE, NULL), "date"),
+      "picture"=COALESCE(NULLIF($6, NULL), "picture"),
+      "cityId"=COALESCE(NULLIF($7::INTEGER, NULL), "cityId")
+    WHERE "createdBy"=$1 AND "id"=$2
     RETURNING *
   `
-    const values = [cityId, data.title, data.descriptions, data.date, data.picture]
+    const values = [id, idParams, data.title, data.descriptions, data.date, data.picture, data.cityId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
