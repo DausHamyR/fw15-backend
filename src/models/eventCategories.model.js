@@ -47,24 +47,24 @@ exports.insert = async function (data) {
     return rows[0]
 }
 
-exports.insertCategories = async function (findEventId, findCategories) {
+exports.insertCategories = async function (findCategories, findEventId) {
     const query = `
-    INSERT INTO "eventCategories" ("eventId", "categoryId")
+    INSERT INTO "eventCategories" ("categoryId", "eventId")
     VALUES ($1, $2) RETURNING *
     `
-    const values = [findEventId, findCategories]
+    const values = [findCategories,findEventId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
 
-exports.update = async function (eventId, categoryId) {
+exports.update = async function (id, eventId) {
     const query = `
     UPDATE "eventCategories"
-    SET "categoryId"=COALESCE(NULLIF($2::INTEGER, NULL), "categoryId")
-    WHERE "eventId"=$1
+    SET "eventId"=COALESCE(NULLIF($2::INTEGER, NULL), "eventId")
+    WHERE "id"=$1
     RETURNING *
   `
-    const values = [eventId, categoryId]
+    const values = [id, eventId]
     const {rows} = await db.query(query, values)
     return rows[0]
 }
