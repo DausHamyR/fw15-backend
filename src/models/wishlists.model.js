@@ -21,15 +21,7 @@ LIMIT $1 OFFSET $2
     return rows
 }
 
-exports.findAllWishlists = async function (page, limit, search, sort, sortBy) {
-    page = parseInt(page) || 1
-    limit = parseInt(limit) || 5
-    search = search || ""
-    sort = sort || "title"
-    sortBy = sortBy || "ASC"
-
-    const offset = (page - 1) * limit
-
+exports.findAllWishlists = async function (id) {
     const query = `
 SELECT
 "w"."eventId" "id",
@@ -41,12 +33,9 @@ SELECT
 FROM "wishlists" "w"
 JOIN "events" "e" ON "e"."id" = "w"."eventId"
 JOIN "cities" "c" ON "c"."id" = "e"."cityId"
-WHERE "w"."id"::TEXT
-LIKE $3 
-ORDER BY ${sort} ${sortBy} 
-LIMIT $1 OFFSET $2
+WHERE "w"."userId"::INTEGER=$1
 `
-    const values = [limit, offset, `%${search}%`]
+    const values = [id]
     const {rows} = await db.query(query, values)
     return rows
 }

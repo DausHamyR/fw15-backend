@@ -4,13 +4,8 @@ const eventModel = require("../../models/events.model")
 
 exports.getWishlists = async (request, response) => {
     try {
-        const wishlists = await wishlistsModel.findAllWishlists(
-            request.query.page,
-            request.query.limit,
-            request.query.search,
-            request.query.sort,
-            request.query.sortBy)
-            
+        const {id} = request.user
+        const wishlists = await wishlistsModel.findAllWishlists(id)
         return response.json({
             success: true,
             message: "wishlists",
