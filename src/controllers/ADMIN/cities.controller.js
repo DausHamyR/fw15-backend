@@ -48,7 +48,7 @@ exports.createcities = async (request, response) => {
             ...request.body
         }
         if(request.file) {
-            data.picture = request.file.filename
+            data.picture = request.file.path
         }
         const cities = await citiesModel.insert(data)
         return response.json({
