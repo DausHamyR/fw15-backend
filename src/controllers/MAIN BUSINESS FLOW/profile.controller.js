@@ -17,8 +17,6 @@ exports.updateProfile = async (request, response) => {
             throw Error("unauthorized")
         }
         if(request.file) {
-            console.log(request.file)
-            console.log(user.picture)
             if(user.picture) {
                 // fileRemover({filename: user.picture})
             }
@@ -49,8 +47,7 @@ exports.updateProfile = async (request, response) => {
             gender: profile.gender,
             profession: profile.profession,
             nationality: profile.nationality,
-            birthDate: profile.birthDate
-            // birthDate: moment(profile.birthDate, "YYYY-MM-DD").format("DD/MM/YYYY")
+            birthDate: moment(profile.birthDate).format("DD-MM-YYYY")
         }
         return response.json({
             success: true,
