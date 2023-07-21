@@ -60,8 +60,8 @@ exports.insertCategories = async function (findCategories, findEventId) {
 exports.update = async function (id, eventId) {
     const query = `
     UPDATE "eventCategories"
-    SET "eventId"=COALESCE(NULLIF($2::INTEGER, NULL), "eventId")
-    WHERE "id"=$1
+    SET "categoryId"=COALESCE(NULLIF($2::INTEGER, NULL), "categoryId")
+    WHERE "eventId"=$1
     RETURNING *
   `
     const values = [id, eventId]
