@@ -68,6 +68,7 @@ exports.getOneEvents = async (request, response) => {
 }
 
 exports.updateEvent = async (request, response) => {
+    console.log("tes")
     try {
         const {id} = request.user
         const idParams = request.params.id
@@ -76,7 +77,9 @@ exports.updateEvent = async (request, response) => {
         }
         if(request.file) {
             data.picture = request.file.path
+            console.log(data.picture)
         }
+        console.log(data)
         const updateEvent = await eventsModel.updateEvent(id, idParams, data)
         const updateCategories = await eventCategoriesModel.update(updateEvent.id, data.category)
         const results = [updateEvent, updateCategories]
